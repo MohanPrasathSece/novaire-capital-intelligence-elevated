@@ -265,8 +265,8 @@ export function AcademyPortal() {
           {/* Browser Navigation Sidebar / Tab Container */}
           <div className="flex flex-col lg:flex-row min-h-[600px]">
             {/* Sidebar list */}
-            <div className="w-full lg:w-72 bg-[#0c0b0a] border-r border-b lg:border-b-0 border-white/5 p-4 space-y-1">
-              <div className="text-[11px] uppercase tracking-wider text-white/30 font-medium px-3 mb-3">Courses</div>
+            <div className="w-full lg:w-72 bg-[#0c0b0a] border-r border-b lg:border-b-0 border-white/5 p-4 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible gap-2 lg:gap-1 lg:space-y-1 shrink-0 scrollbar-none">
+              <div className="text-[11px] uppercase tracking-wider text-white/30 font-medium px-3 mb-3 hidden lg:block">Courses</div>
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isSelected = activeTab === tab.id;
@@ -274,9 +274,9 @@ export function AcademyPortal() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium text-left transition-all cursor-pointer ${
+                    className={`flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-xs font-medium text-left transition-all cursor-pointer whitespace-nowrap lg:w-full shrink-0 ${
                       isSelected
-                        ? "bg-[var(--gold)]/10 text-[var(--gold)] border-l-2 border-[var(--gold)]"
+                        ? "bg-[var(--gold)]/10 text-[var(--gold)] border-t-2 lg:border-t-0 lg:border-l-2 border-[var(--gold)]"
                         : "text-white/60 hover:text-white hover:bg-white/5"
                     }`}
                   >
