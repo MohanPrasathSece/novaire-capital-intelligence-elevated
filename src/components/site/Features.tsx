@@ -23,7 +23,7 @@ export function Features() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-white/40">Why Novaire</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-white/40">Why Lumière Chain</p>
           <h2 className="mt-4 font-display text-4xl md:text-6xl tracking-[-0.03em] leading-[1] font-medium">
             <span className="text-white">An intelligence layer</span><br />
             <span className="text-gradient">for digital assets.</span>
@@ -33,7 +33,7 @@ export function Features() {
             institutional desk and the clarity of consumer software.
           </p>
         </motion.div>
-
+ 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {features.map((f, i) => (
             <motion.div
@@ -50,7 +50,7 @@ export function Features() {
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-white/10 to-white/[0.02] text-white">
                   <f.icon className="h-5 w-5" strokeWidth={1.5} />
                 </div>
-                <h3 className="mt-5 font-display text-lg text-white tracking-tight">{f.title}</h3>
+                <h3 className="mt-5 font-display text-2xl text-white tracking-tight">{f.title}</h3>
                 <p className="mt-2 text-sm text-white/55 leading-relaxed">{f.desc}</p>
               </div>
             </motion.div>

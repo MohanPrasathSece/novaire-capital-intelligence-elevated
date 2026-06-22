@@ -48,7 +48,7 @@ export function Security() {
                   className="rounded-xl glass p-4"
                 >
                   <it.icon className="h-5 w-5 text-[var(--gold)]" strokeWidth={1.5} />
-                  <div className="mt-3 font-display text-sm text-white">{it.t}</div>
+                  <div className="mt-3 font-display text-xl text-white">{it.t}</div>
                   <div className="mt-1 text-xs text-white/55 leading-relaxed">{it.d}</div>
                 </motion.div>
               ))}
