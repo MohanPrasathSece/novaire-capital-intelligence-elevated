@@ -27,14 +27,14 @@ export function Preloader() {
         >
           <div className="relative flex flex-col items-center">
             <div className="relative h-32 w-32">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--electric)] via-[var(--royal)] to-[var(--cyan-neon)] blur-2xl opacity-60 animate-pulse-glow" />
-              <div className="absolute inset-3 rounded-full bg-gradient-to-br from-[var(--electric)] via-[var(--royal)] to-[var(--cyan-neon)] animate-gradient" />
+              <div className="absolute inset-0 rounded-full bg-[var(--gold)] blur-2xl opacity-60 animate-pulse-glow" />
+              <div className="absolute inset-3 rounded-full bg-[var(--gold)] animate-gradient" />
               <div className="absolute inset-6 rounded-full bg-[#040404] grid place-items-center font-display text-xl text-white">N</div>
             </div>
             <div className="mt-10 font-display text-xs tracking-[0.4em] text-white/60">NOVAIRE CAPITAL</div>
             <div className="mt-2 font-display text-3xl text-gradient tabular-nums">{pct}%</div>
             <div className="mt-4 h-px w-48 overflow-hidden bg-white/10">
-              <motion.div className="h-full bg-gradient-to-r from-[var(--electric)] to-[var(--royal)]" style={{ width: `${pct}%` }} />
+              <motion.div className="h-full bg-[var(--gold)]" style={{ width: `${pct}%` }} />
             </div>
           </div>
         </motion.div>

@@ -45,7 +45,7 @@ export function Features() {
               whileHover={{ y: -4 }}
               className="group relative overflow-hidden rounded-2xl glass p-6 transition-all hover:bg-white/[0.04]"
             >
-              <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-[var(--royal)]/0 blur-3xl transition-all duration-500 group-hover:bg-[var(--royal)]/30" />
+              <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-[var(--gold)]/0 blur-3xl transition-all duration-500 group-hover:bg-[var(--gold)]/15" />
               <div className="relative">
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-white/10 to-white/[0.02] text-white">
                   <f.icon className="h-5 w-5" strokeWidth={1.5} />

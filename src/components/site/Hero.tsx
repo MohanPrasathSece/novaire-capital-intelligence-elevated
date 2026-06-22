@@ -25,8 +25,8 @@ export function Hero() {
         >
           <div className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs text-white/70">
             <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--gold)] opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--gold)]" />
             </span>
             <span>Live · French AI Crypto Intelligence</span>
             <span className="text-white/30">|</span>
@@ -104,8 +104,8 @@ export function Hero() {
               <div className="absolute inset-12 rounded-full border border-dashed border-white/10 animate-spin-slow" />
 
               {/* core orb */}
-              <div className="absolute inset-16 rounded-full bg-gradient-to-br from-[var(--electric)] via-[var(--royal)] to-[var(--cyan-neon)] animate-gradient blur-2xl opacity-70" />
-              <div className="absolute inset-20 rounded-full bg-gradient-to-br from-[var(--electric)] via-[var(--royal)] to-[var(--cyan-neon)] animate-gradient shadow-[var(--shadow-glow)]" />
+              <div className="absolute inset-16 rounded-full bg-[var(--gold)] animate-gradient blur-2xl opacity-70" />
+              <div className="absolute inset-20 rounded-full bg-[var(--gold)] animate-gradient shadow-[var(--shadow-glow)]" />
               <div className="absolute inset-24 rounded-full bg-[#040404]/40 backdrop-blur-xl" />
 
               {/* floating tickers */}
@@ -121,7 +121,7 @@ export function Hero() {
                   style={{ animationDelay: `${Math.random() * -8}s` }}
                 >
                   <div className="text-[10px] uppercase tracking-wider text-white/50">{t.sym}</div>
-                  <div className={`font-display ${t.up ? "text-emerald-400" : "text-rose-400"}`}>{t.price}</div>
+                  <div className={`font-display ${t.up ? "text-[var(--gold)]" : "text-white/45"}`}>{t.price}</div>
                 </div>
               ))}
             </div>

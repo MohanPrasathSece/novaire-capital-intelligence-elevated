@@ -13,7 +13,7 @@ export function Footer() {
         <div className="grid lg:grid-cols-[1.4fr_repeat(5,1fr)] gap-10">
           <div>
             <div className="flex items-center gap-2.5">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[var(--electric)] to-[var(--royal)] grid place-items-center text-xs font-bold text-white">N</div>
+              <div className="h-8 w-8 rounded-lg bg-[var(--gold)] grid place-items-center text-xs font-bold text-white">N</div>
               <span className="font-display text-sm tracking-[0.2em] text-white">NOVAIRE</span>
             </div>
             <p className="mt-5 max-w-xs text-sm text-white/50 leading-relaxed">

@@ -38,7 +38,7 @@ export function AIBot() {
               "Reinforcement-learning execution policies",
             ].map((line) => (
               <li key={line} className="flex items-start gap-3 text-white/70">
-                <span className="mt-1.5 h-1 w-1 rounded-full bg-[var(--cyan-neon)] shadow-[0_0_8px_var(--cyan-neon)]" />
+                <span className="mt-1.5 h-1 w-1 rounded-full bg-[var(--gold)] shadow-[0_0_8px_var(--gold)]" />
                 {line}
               </li>
             ))}
@@ -53,12 +53,12 @@ export function AIBot() {
           transition={{ duration: 0.9, delay: 0.1 }}
           className="relative"
         >
-          <div className="absolute -inset-10 bg-[var(--royal)]/20 blur-3xl rounded-full" />
+          <div className="absolute -inset-10 bg-[var(--gold)]/10 blur-3xl rounded-full" />
           <div className="relative shimmer-border rounded-3xl">
             <div className="rounded-3xl glass-strong p-6">
               <div className="flex items-center justify-between text-xs text-white/50">
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-[var(--gold)] animate-pulse" />
                   novaire.engine
                 </div>
                 <span>v3.0 · live</span>
@@ -72,7 +72,7 @@ export function AIBot() {
                   </div>
                   <div className="text-right">
                     <div className="text-[11px] uppercase tracking-widest text-white/40">Signal</div>
-                    <div className="font-display text-lg text-emerald-400">Strong Buy · 92%</div>
+                    <div className="font-display text-lg text-[var(--gold)]">Strong Buy · 92%</div>
                   </div>
                 </div>
 
