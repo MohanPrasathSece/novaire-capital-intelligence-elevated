@@ -77,44 +77,43 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
-    background-color: #040404;
+    background-color: #0a0908;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  ::selection { background: oklch(0.55 0.25 290 / 0.4); color: white; }
+  ::selection { background: oklch(0.80 0.11 78 / 0.35); color: var(--bone); }
+}
+
+@utility text-gold {
+  color: var(--gold);
 }
 
 @utility text-gradient {
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--gold);
 }
 
 @utility text-gradient-brand {
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--gold);
 }
 
 @utility glass {
-  background: oklch(0.10 0.01 270 / 0.5);
-  backdrop-filter: blur(20px) saturate(160%);
+  background: oklch(0.11 0.006 60 / 0.55);
+  backdrop-filter: blur(20px) saturate(140%);
   border: 1px solid oklch(1 0 0 / 0.07);
 }
 
 @utility glass-strong {
-  background: oklch(0.08 0.008 270 / 0.75);
-  backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid oklch(1 0 0 / 0.08);
+  background: oklch(0.09 0.005 60 / 0.78);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid oklch(1 0 0 / 0.09);
 }
 
 @utility aurora-bg {
-  background-image: var(--gradient-aurora);
+  background-color: oklch(0.10 0.006 60);
 }
+
 
 @utility grid-bg {
   background-image:
@@ -134,7 +133,8 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: var(--gradient-border);
+    background: linear-gradient(135deg, oklch(0.80 0.11 78 / 0.5), oklch(0.80 0.11 78 / 0.1) 50%, oklch(0.80 0.11 78 / 0.5));
+
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
             mask-composite: exclude;
