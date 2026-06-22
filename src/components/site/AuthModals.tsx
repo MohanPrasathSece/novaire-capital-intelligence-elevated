@@ -2,9 +2,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Loader2, Sparkles, User, Mail, Phone } from "lucide-react";
 import { useAuth } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export function AuthModals() {
   const { activeModal, setActiveModal, login, signup } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -47,6 +49,7 @@ export function AuthModals() {
       setSuccess("Logged in successfully!");
       setTimeout(() => {
         handleClose();
+        navigate("/academy");
       }, 1000);
     } else {
       setError(res.error || "Login failed. Check your email or sign up.");
@@ -79,6 +82,7 @@ export function AuthModals() {
       setSuccess("Account created successfully!");
       setTimeout(() => {
         handleClose();
+        navigate("/academy");
       }, 1000);
     } else {
       setError(res.error || "Signup failed.");

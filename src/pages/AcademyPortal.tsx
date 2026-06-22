@@ -44,6 +44,52 @@ export function AcademyPortal() {
 
   const [activeTab, setActiveTab] = useState("intro");
 
+  // Live Candlestick Simulator State
+  const [candles, setCandles] = useState([
+    { open: 60, close: 75, high: 80, low: 55, isBullish: true },
+    { open: 75, close: 70, high: 85, low: 65, isBullish: false },
+    { open: 70, close: 85, high: 90, low: 68, isBullish: true },
+    { open: 85, close: 95, high: 100, low: 80, isBullish: true },
+    { open: 95, close: 90, high: 98, low: 88, isBullish: false },
+    { open: 90, close: 105, high: 110, low: 85, isBullish: true },
+  ]);
+
+  const [currentPrice, setCurrentPrice] = useState(98420.10);
+  const [priceChange, setPriceChange] = useState(4.25);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const change = (Math.random() - 0.49) * 40;
+      setCurrentPrice(prev => Number((prev + change).toFixed(2)));
+      setPriceChange(prev => Number((prev + (change > 0 ? 0.01 : -0.01)).toFixed(2)));
+      
+      setCandles(prev => {
+        const next = [...prev];
+        const last = { ...next[next.length - 1] };
+        last.close = Math.max(30, Math.min(120, last.close + (change > 0 ? 3.5 : -3.5)));
+        last.high = Math.max(last.high, last.close, last.open);
+        last.low = Math.min(last.low, last.close, last.open);
+        last.isBullish = last.close >= last.open;
+        next[next.length - 1] = last;
+        
+        if (Math.random() > 0.8) {
+          const newOpen = last.close;
+          const newClose = newOpen + (Math.random() > 0.5 ? 6 : -6);
+          next.shift();
+          next.push({
+            open: newOpen,
+            close: newClose,
+            high: Math.max(newOpen, newClose) + 6,
+            low: Math.min(newOpen, newClose) - 6,
+            isBullish: newClose >= newOpen
+          });
+        }
+        return next;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Contact form state
   const [name, setName] = useState(user?.name || "");
   const [email, setEmail] = useState(user?.email || "");
@@ -103,11 +149,24 @@ export function AcademyPortal() {
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-[var(--gold)] opacity-[0.03] blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 right-1/4 w-[600px] h-[600px] rounded-full bg-[var(--gold)] opacity-[0.02] blur-3xl pointer-events-none" />
 
-      {/* Floating Crypto Illustrations (Visuals) */}
+      {/* Golden 3D Spinning Bitcoin Coin Visual */}
       <motion.div
-        animate={{ y: [0, -15, 0] }}
-        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-        className="absolute top-36 right-12 w-16 h-16 glass rounded-2xl hidden xl:flex items-center justify-center border-gold/20 shadow-[0_0_20px_rgba(212,175,55,0.1)] text-[var(--gold)] font-bold text-2xl"
+        animate={{
+          y: [0, -25, 0],
+          rotateY: [0, 360],
+          boxShadow: [
+            "0 0 20px rgba(242,169,0,0.2)",
+            "0 0 40px rgba(242,169,0,0.6)",
+            "0 0 20px rgba(242,169,0,0.2)"
+          ]
+        }}
+        transition={{
+          y: { repeat: Infinity, duration: 6, ease: "easeInOut" },
+          rotateY: { repeat: Infinity, duration: 8, ease: "linear" },
+          boxShadow: { repeat: Infinity, duration: 3, ease: "easeInOut" }
+        }}
+        className="absolute top-36 right-16 w-24 h-24 rounded-full bg-gradient-to-br from-[#ffd700] via-[#daa520] to-[#b8860b] hidden xl:flex items-center justify-center border-4 border-yellow-200 text-[#0a0908] font-bold text-4xl select-none"
+        style={{ transformStyle: "preserve-3d", perspective: 1000 }}
       >
         ₿
       </motion.div>
@@ -336,36 +395,41 @@ export function AcademyPortal() {
                       <div className="p-6 bg-[#0a0908] rounded-xl border border-white/5 flex flex-col justify-between">
                         <div className="flex justify-between items-center mb-4">
                           <span className="text-xs text-white/40">Market Indicator: BTC / USDT</span>
-                          <span className="text-xs text-emerald-400 font-mono">+4.2%</span>
+                          <span className={`text-xs font-mono transition-colors duration-500 ${priceChange >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                            ${currentPrice.toLocaleString()} ({priceChange >= 0 ? '+' : ''}{priceChange}%)
+                          </span>
                         </div>
-                        <div className="flex gap-4 items-end justify-center h-28 border-b border-white/10 pb-2">
-                          <div className="flex flex-col items-center">
-                            <span className="w-0.5 h-10 bg-red-500" />
-                            <span className="w-3 h-14 bg-red-500 rounded-sm" />
-                            <span className="w-0.5 h-6 bg-red-500" />
-                          </div>
-                          <div className="flex flex-col items-center">
-                            <span className="w-0.5 h-8 bg-emerald-500" />
-                            <span className="w-3 h-10 bg-emerald-500 rounded-sm" />
-                            <span className="w-0.5 h-8 bg-emerald-500" />
-                          </div>
-                          <div className="flex flex-col items-center">
-                            <span className="w-0.5 h-6 bg-emerald-500" />
-                            <span className="w-3 h-16 bg-emerald-500 rounded-sm" />
-                            <span className="w-0.5 h-8 bg-emerald-500" />
-                          </div>
-                          <div className="flex flex-col items-center">
-                            <span className="w-0.5 h-12 bg-red-500" />
-                            <span className="w-3 h-8 bg-red-500 rounded-sm" />
-                            <span className="w-0.5 h-4 bg-red-500" />
-                          </div>
-                          <div className="flex flex-col items-center">
-                            <span className="w-0.5 h-6 bg-emerald-500" />
-                            <span className="w-3 h-20 bg-emerald-500 rounded-sm" />
-                            <span className="w-0.5 h-10 bg-emerald-500" />
-                          </div>
+                        <div className="flex gap-6 items-end justify-center h-40 border-b border-white/10 pb-4">
+                          {candles.map((candle, idx) => {
+                            const isBullish = candle.isBullish;
+                            const height = Math.abs(candle.close - candle.open);
+                            const wickHeight = candle.high - candle.low;
+                            const bodyBottom = Math.min(candle.open, candle.close);
+                            
+                            return (
+                              <div key={idx} className="flex flex-col items-center w-8 relative" style={{ height: '100%' }}>
+                                {/* Wick */}
+                                <div 
+                                  className={`absolute w-0.5 transition-all duration-300 ${isBullish ? 'bg-emerald-500' : 'bg-red-500'}`}
+                                  style={{
+                                    height: `${wickHeight}%`,
+                                    bottom: `${candle.low}%`
+                                  }}
+                                />
+                                {/* Body */}
+                                <motion.div 
+                                  layout
+                                  className={`absolute w-4 rounded-sm transition-colors duration-300 ${isBullish ? 'bg-emerald-500/80 shadow-[0_0_10px_rgba(16,185,129,0.3)]' : 'bg-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.3)]'}`}
+                                  style={{
+                                    height: `${Math.max(4, height)}%`,
+                                    bottom: `${bodyBottom}%`
+                                  }}
+                                />
+                              </div>
+                            );
+                          })}
                         </div>
-                        <div className="text-[10px] text-white/30 text-center mt-2">Interactive Candlestick simulator</div>
+                        <div className="text-[10px] text-white/30 text-center mt-3">Live simulating price ticks & candlestick ensembles</div>
                       </div>
                     </div>
                   )}
