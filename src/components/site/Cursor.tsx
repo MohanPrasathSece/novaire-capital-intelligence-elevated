@@ -25,7 +25,7 @@ export function Cursor() {
         className="h-[500px] w-[500px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.70 0.22 255 / 0.18), oklch(0.55 0.25 290 / 0.08) 40%, transparent 70%)",
+            "radial-gradient(circle, oklch(0.80 0.11 78 / 0.10), transparent 70%)",
           willChange: "transform",
         }}
       />
