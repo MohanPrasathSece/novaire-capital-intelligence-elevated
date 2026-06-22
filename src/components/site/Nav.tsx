@@ -39,7 +39,7 @@ export function Nav() {
           </span>
         </Link>
 
-        <ul className="hidden lg:flex items-center gap-1 text-[13px] text-white/70">
+        <ul className="hidden lg:flex items-center gap-1 text-[15px] text-white/70">
           {links.map((l) => (
             <li key={l}>
               <a
@@ -57,14 +57,14 @@ export function Nav() {
             <>
               <Link
                 to="/academy"
-                className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[13px] font-medium transition-all hover:shadow-[var(--shadow-glow)]"
+                className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[15px] font-medium transition-all hover:shadow-[var(--shadow-glow)]"
               >
                 Academy Portal
                 <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
               </Link>
               <button
                 onClick={logout}
-                className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[13px] text-white/80 transition-colors hover:text-white cursor-pointer"
+                className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[15px] text-white/80 transition-colors hover:text-white cursor-pointer"
               >
                 Logout
               </button>
@@ -73,13 +73,13 @@ export function Nav() {
             <>
               <button
                 onClick={() => setActiveModal("login")}
-                className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[13px] text-white/80 transition-colors hover:text-white cursor-pointer"
+                className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[15px] text-white/80 transition-colors hover:text-white cursor-pointer"
               >
                 Login
               </button>
               <button
                 onClick={() => setActiveModal("signup")}
-                className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[13px] font-medium transition-all hover:shadow-[var(--shadow-glow)] cursor-pointer"
+                className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[15px] font-medium transition-all hover:shadow-[var(--shadow-glow)] cursor-pointer"
               >
                 Get Started
                 <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>

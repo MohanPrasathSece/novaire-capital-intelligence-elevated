@@ -67,11 +67,11 @@ export function ContactForm() {
         >
           <div className="relative glass-strong p-8 md:p-12 text-left">
             <div className="text-center mb-10">
-              <span className="text-[var(--gold)] font-display text-xs uppercase tracking-[0.2em] font-semibold">Consulting & Advisory</span>
+              <span className="text-[var(--gold)] font-display text-[15px] uppercase tracking-[0.2em] font-semibold">Consulting & Advisory</span>
               <h2 className="font-display text-4xl md:text-5xl tracking-tight font-medium mt-2">
                 Get in Touch
               </h2>
-              <p className="mt-3 text-white/50 text-xs md:text-sm max-w-md mx-auto">
+              <p className="mt-3 text-white/50 text-[15px] max-w-md mx-auto">
                 Have questions about our proprietary AI models or corporate consulting? Complete the form below.
               </p>
             </div>
@@ -86,10 +86,10 @@ export function ContactForm() {
                   ✓
                 </div>
                 <h3 className="font-display text-2xl font-medium text-white mb-2">Enquiry Received</h3>
-                <p className="text-emerald-400 text-sm">{success}</p>
+                <p className="text-emerald-400 text-[15px]">{success}</p>
                 <button
                   onClick={() => setSuccess("")}
-                  className="mt-6 text-xs text-white/50 hover:text-white underline cursor-pointer"
+                  className="mt-6 text-[15px] text-white/50 hover:text-white underline cursor-pointer"
                 >
                   Send another message
                 </button>
@@ -97,14 +97,14 @@ export function ContactForm() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 {error && (
-                  <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-xs">
+                  <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-[15px]">
                     {error}
                   </div>
                 )}
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Full Name</label>
+                    <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Full Name</label>
                     <div className="relative">
                       <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                       <input
@@ -114,13 +114,13 @@ export function ContactForm() {
                         onChange={(e) => setName(e.target.value)}
                         disabled={loading}
                         required
-                        className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 pl-10 pr-4 text-xs text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all"
+                        className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 pl-10 pr-4 text-[15px] text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Email Address</label>
+                    <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Email Address</label>
                     <div className="relative">
                       <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                       <input
@@ -130,14 +130,14 @@ export function ContactForm() {
                         onChange={(e) => setEmail(e.target.value)}
                         disabled={loading}
                         required
-                        className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 pl-10 pr-4 text-xs text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all"
+                        className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 pl-10 pr-4 text-[15px] text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all"
                       />
                     </div>
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Phone Number</label>
+                  <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Phone Number</label>
                   <div className="relative">
                     <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                     <input
@@ -147,27 +147,27 @@ export function ContactForm() {
                       onChange={(e) => setPhone(e.target.value)}
                       disabled={loading}
                       required
-                      className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 pl-10 pr-4 text-xs text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all"
+                      className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 pl-10 pr-4 text-[15px] text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Message (Optional)</label>
+                  <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Message (Optional)</label>
                   <textarea
                     rows={4}
                     placeholder="Tell us about your enquiry..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     disabled={loading}
-                    className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 px-4 text-xs text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all resize-none"
+                    className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 px-4 text-[15px] text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full relative mt-2 group overflow-hidden rounded-xl bg-white text-black py-3 text-xs font-semibold hover:shadow-[var(--shadow-glow)] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full relative mt-2 group overflow-hidden rounded-xl bg-white text-black py-3 text-[15px] font-semibold hover:shadow-[var(--shadow-glow)] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {loading ? (
                     <Loader2 size={16} className="animate-spin" />

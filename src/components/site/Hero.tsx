@@ -40,7 +40,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display text-[clamp(3rem,8vw,7.5rem)] leading-[0.95] tracking-[-0.04em] font-medium"
+              className="font-display text-[clamp(2.5rem,6.5vw,5rem)] leading-[0.95] tracking-[-0.04em] font-medium"
             >
               <span className="block text-white">Trade Smarter.</span>
               <span className="block text-gradient">Powered by</span>

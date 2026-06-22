@@ -8,8 +8,6 @@ import { Marquee } from "@/components/site/Marquee";
 import { Features } from "@/components/site/Features";
 import { AIBot } from "@/components/site/AIBot";
 import { Security } from "@/components/site/Security";
-import { Academy } from "@/components/site/Academy";
-import { Testimonials } from "@/components/site/Testimonials";
 import { FAQ } from "@/components/site/FAQ";
 import { CTA } from "@/components/site/CTA";
 import { ContactForm } from "@/components/site/ContactForm";
@@ -29,8 +27,6 @@ export function LandingPage() {
         <Features />
         <AIBot />
         <Security />
-        <Academy />
-        <Testimonials />
         <FAQ />
         <CTA />
         <ContactForm />

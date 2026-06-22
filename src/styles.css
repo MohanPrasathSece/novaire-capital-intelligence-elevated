@@ -5,8 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Instrument Serif", "Times New Roman", serif;
-  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-sans: "Poppins", "Inter", system-ui, sans-serif;
+  --text-xs: 15px;
+  --text-sm: 15px;
 
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -80,11 +82,22 @@
     background-color: #0a0908;
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-size: 15px; /* Minimum body font size is 15px */
+    font-size: 16px; /* Reset base size to compensate for font visual scale */
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
   ::selection { background: oklch(0.80 0.11 78 / 0.35); color: var(--bone); }
+
+  /* Ensure all small font utility classes are at least 15px */
+  [class*="text-[10px]"],
+  [class*="text-[11px]"],
+  [class*="text-[12px]"],
+  [class*="text-[13px]"],
+  [class*="text-[14px]"],
+  [class*="text-xs"],
+  [class*="text-sm"] {
+    font-size: 15px !important;
+  }
 }
 
 @utility text-gold {
