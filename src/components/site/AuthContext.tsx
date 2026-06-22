@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       
       if (!response.ok) {
-        throw new Error("Server returned error response");
+        throw new Error("Server returned HTTP error");
       }
       
       const data = await response.json();
@@ -70,7 +70,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return { success: false, error: data.error || "Login failed" };
       }
     } catch (err) {
-      console.warn("Vite dev proxy or server is offline, falling back to local emulator.", err);
+      console.warn("Vite dev proxy or server is offline, falling back to local emulator database lookup.", err);
       // Client-side fallback check
       const localUsers = getLocalUsers();
       if (localUsers[lowerEmail]) {
@@ -80,14 +80,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setActiveModal(null);
         return { success: true };
       }
-      // Special fallback to allow any email to login if server is offline during testing
-      // but warn the user. Let's register them dynamically
-      const newUser: User = { name: "Test User", email: lowerEmail, phone: "+12345678" };
-      setUser(newUser);
-      saveLocalUser(newUser);
-      localStorage.setItem("lumiere_user", JSON.stringify(newUser));
-      setActiveModal(null);
-      return { success: true };
+      // If the email is not registered in the emulated database, return error!
+      return { success: false, error: "Email not registered. Please sign up first." };
     }
   };
 
@@ -101,7 +95,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       
       if (!response.ok) {
-        throw new Error("Server returned error response");
+        throw new Error("Server returned HTTP error");
       }
 
       const data = await response.json();
@@ -114,7 +108,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return { success: false, error: data.error || "Signup failed" };
       }
     } catch (err) {
-      console.warn("Vite dev proxy or server is offline, falling back to local emulator.", err);
+      console.warn("Vite dev proxy or server is offline, falling back to local emulator signup.", err);
       // Client-side fallback saving
       saveLocalUser(newUser);
       setUser(newUser);
