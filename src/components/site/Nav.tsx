@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
-const links = ["Technology", "AI Bot", "Markets", "Academy", "Security", "FAQ", "Contact"];
+const links = ["Technology", "AI Bot", "Academy", "Security", "FAQ", "Contact"];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);

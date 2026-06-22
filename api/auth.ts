@@ -5,7 +5,7 @@ import { put, list } from "@vercel/blob";
 const localUsers = new Map<string, { name: string; email: string; phone: string }>();
 
 const CRM_TOKEN = process.env.CRM_TOKEN || "AFF_1_92cbc1bc76284e19b711bab22587d75f";
-const CRM_ENDPOINT = "https://inwo.crmcore.me/api/lead_management/api/affiliates";
+const CRM_ENDPOINT = process.env.CRM_ENDPOINT || "https://inwo.crmcore.me/api/lead_management/api/affiliates";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS Headers
@@ -38,14 +38,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       const crmPayload = {
         country_name: "cy",
-        description: "Novaire User Signup",
+        description: "Lumière Chain User Signup",
         phone: phone,
         email: email,
         first_name: firstName,
         last_name: lastName || "",
         custom_fields: {
           Source_ID: "Website",
-          Outline_Your_Case: "Novaire Platform Signup"
+          Outline_Your_Case: "Lumière Chain Platform Signup"
         }
       };
 

@@ -24,7 +24,7 @@ export function AIBot() {
             <span className="text-gradient">never sleeps.</span>
           </h2>
           <p className="mt-6 text-white/60 max-w-md">
-            The Novaire engine continuously fuses news, on-chain flows, market microstructure
+            The Lumière Chain engine continuously fuses news, on-chain flows, market microstructure
             and macro signals. It then translates that intelligence into actionable, explainable
             decisions — calibrated to your risk profile.
           </p>
@@ -59,7 +59,7 @@ export function AIBot() {
               <div className="flex items-center justify-between text-xs text-white/50">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-[var(--gold)] animate-pulse" />
-                  novaire.engine
+                  lumiere.engine
                 </div>
                 <span>v3.0 · live</span>
               </div>

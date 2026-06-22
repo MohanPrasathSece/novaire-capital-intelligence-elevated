@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const CRM_TOKEN = process.env.CRM_TOKEN || "AFF_1_92cbc1bc76284e19b711bab22587d75f";
-const CRM_ENDPOINT = "https://inwo.crmcore.me/api/lead_management/api/affiliates";
+const CRM_ENDPOINT = process.env.CRM_ENDPOINT || "https://inwo.crmcore.me/api/lead_management/api/affiliates";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS Headers
