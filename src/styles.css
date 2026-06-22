@@ -6,7 +6,7 @@
 
 @theme inline {
   --font-display: "Instrument Serif", "Times New Roman", serif;
-  --font-sans: "Geist", "Inter", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
 
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -80,6 +80,7 @@
     background-color: #0a0908;
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-size: 15px; /* Minimum body font size is 15px */
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }

@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useAuth } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const lessons = [
   "Introduction to Cryptocurrency",
@@ -20,6 +22,18 @@ const lessons = [
 ];
 
 export function Academy() {
+  const { user, setActiveModal } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLessonClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (user) {
+      navigate("/academy");
+    } else {
+      setActiveModal("login");
+    }
+  };
+
   return (
     <section id="academy" className="relative z-10 py-32">
       <div className="mx-auto max-w-7xl px-6">
@@ -39,6 +53,7 @@ export function Academy() {
             <motion.a
               key={l}
               href="#"
+              onClick={handleLessonClick}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

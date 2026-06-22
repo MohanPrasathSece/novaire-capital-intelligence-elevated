@@ -1,6 +1,27 @@
 import { motion } from "framer-motion";
+import { useAuth } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export function CTA() {
+  const { user, setActiveModal } = useAuth();
+  const navigate = useNavigate();
+
+  const handleCreateAccount = () => {
+    if (user) {
+      navigate("/academy");
+    } else {
+      setActiveModal("signup");
+    }
+  };
+
+  const handleExploreAcademy = () => {
+    if (user) {
+      navigate("/academy");
+    } else {
+      setActiveModal("login");
+    }
+  };
+
   return (
     <section className="relative z-10 py-32">
       <div className="mx-auto max-w-7xl px-6">
@@ -22,10 +43,16 @@ export function CTA() {
                 Join thousands of investors using Novaire to trade, learn and grow with confidence.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-3">
-                <button className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-shadow hover:shadow-[var(--shadow-glow)]">
-                  Create Account
+                <button
+                  onClick={handleCreateAccount}
+                  className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-shadow hover:shadow-[var(--shadow-glow)] cursor-pointer"
+                >
+                  {user ? "Go to Academy" : "Create Account"}
                 </button>
-                <button className="glass rounded-full px-6 py-3 text-sm font-medium text-white hover:bg-white/5">
+                <button
+                  onClick={handleExploreAcademy}
+                  className="glass rounded-full px-6 py-3 text-sm font-medium text-white hover:bg-white/5 cursor-pointer"
+                >
                   Explore Academy
                 </button>
               </div>

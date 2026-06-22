@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const cols = [
   { t: "Company", l: ["About", "Careers", "Press", "Contact"] },
   { t: "Products", l: ["AI Engine", "Markets", "Signals", "Portfolio"] },
@@ -13,8 +15,8 @@ export function Footer() {
         <div className="grid lg:grid-cols-[1.4fr_repeat(5,1fr)] gap-10">
           <div>
             <div className="flex items-center gap-2.5">
-              <div className="h-8 w-8 rounded-lg bg-[var(--gold)] grid place-items-center text-xs font-bold text-white">N</div>
-              <span className="font-display text-sm tracking-[0.2em] text-white">NOVAIRE</span>
+              <div className="h-8 w-8 rounded-lg bg-[var(--gold)] grid place-items-center text-xs font-bold text-white">L</div>
+              <span className="font-display text-sm tracking-[0.2em] text-white">LUMIÈRE CHAIN</span>
             </div>
             <p className="mt-5 max-w-xs text-sm text-white/50 leading-relaxed">
               Intelligence for the next generation of digital assets. Built in France.
@@ -32,11 +34,31 @@ export function Footer() {
             <div key={c.t}>
               <div className="text-xs uppercase tracking-[0.2em] text-white/40">{c.t}</div>
               <ul className="mt-5 space-y-2.5 text-sm">
-                {c.l.map((i) => (
-                  <li key={i}>
-                    <a href="#" className="text-white/65 transition-colors hover:text-white">{i}</a>
-                  </li>
-                ))}
+                {c.l.map((i) => {
+                  if (c.t === "Legal" && i === "Terms") {
+                    return (
+                      <li key={i}>
+                        <Link to="/terms-and-conditions" className="text-white/65 transition-colors hover:text-white">
+                          Terms & Conditions
+                        </Link>
+                      </li>
+                    );
+                  }
+                  if (c.t === "Legal" && i === "Privacy") {
+                    return (
+                      <li key={i}>
+                        <Link to="/privacy-policy" className="text-white/65 transition-colors hover:text-white">
+                          Privacy Policy
+                        </Link>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={i}>
+                      <a href="#" className="text-white/65 transition-colors hover:text-white">{i}</a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

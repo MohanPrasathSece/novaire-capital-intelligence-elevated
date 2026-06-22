@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 const links = ["Technology", "AI Bot", "Markets", "Academy", "Security", "FAQ", "Contact"];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const { user, setActiveModal, logout } = useAuth();
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -24,22 +28,22 @@ export function Nav() {
           scrolled ? "glass-strong py-2.5" : "py-4"
         }`}
       >
-        <a href="#" className="group flex items-center gap-2.5">
+        <Link to="/" className="group flex items-center gap-2.5">
           <div className="relative h-8 w-8 rounded-lg bg-[var(--gold)] shadow-[var(--shadow-glow)]">
             <div className="absolute inset-[2px] rounded-md bg-[#040404] flex items-center justify-center text-[10px] font-bold text-gold">
-              N
+              L
             </div>
           </div>
           <span className="font-display text-sm font-semibold tracking-[0.2em] text-white/90">
-            NOVAIRE
+            LUMIÈRE CHAIN
           </span>
-        </a>
+        </Link>
 
         <ul className="hidden lg:flex items-center gap-1 text-[13px] text-white/70">
           {links.map((l) => (
             <li key={l}>
               <a
-                href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
+                href={l === "Academy" && user ? "/academy" : `/#${l.toLowerCase().replace(/\s+/g, "-")}`}
                 className="relative inline-block rounded-full px-3.5 py-1.5 transition-colors hover:text-white"
               >
                 {l}
@@ -49,13 +53,39 @@ export function Nav() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <button className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[13px] text-white/80 transition-colors hover:text-white">
-            Login
-          </button>
-          <button className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[13px] font-medium transition-all hover:shadow-[var(--shadow-glow)]">
-            Get Started
-            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
-          </button>
+          {user ? (
+            <>
+              <Link
+                to="/academy"
+                className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[13px] font-medium transition-all hover:shadow-[var(--shadow-glow)]"
+              >
+                Academy Portal
+                <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+              </Link>
+              <button
+                onClick={logout}
+                className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[13px] text-white/80 transition-colors hover:text-white cursor-pointer"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => setActiveModal("login")}
+                className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[13px] text-white/80 transition-colors hover:text-white cursor-pointer"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => setActiveModal("signup")}
+                className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[13px] font-medium transition-all hover:shadow-[var(--shadow-glow)] cursor-pointer"
+              >
+                Get Started
+                <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+              </button>
+            </>
+          )}
         </div>
       </nav>
     </motion.header>
