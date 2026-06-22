@@ -25,8 +25,8 @@ export function Nav() {
         }`}
       >
         <a href="#" className="group flex items-center gap-2.5">
-          <div className="relative h-8 w-8 rounded-lg bg-gradient-to-br from-[var(--electric)] to-[var(--royal)] shadow-[var(--shadow-glow-blue)]">
-            <div className="absolute inset-[2px] rounded-md bg-[#040404] flex items-center justify-center text-[10px] font-bold text-gradient-brand">
+          <div className="relative h-8 w-8 rounded-lg bg-[var(--gold)] shadow-[var(--shadow-glow)]">
+            <div className="absolute inset-[2px] rounded-md bg-[#040404] flex items-center justify-center text-[10px] font-bold text-gold">
               N
             </div>
           </div>
@@ -52,7 +52,7 @@ export function Nav() {
           <button className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[13px] text-white/80 transition-colors hover:text-white">
             Login
           </button>
-          <button className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[13px] font-medium transition-all hover:shadow-[var(--shadow-glow-blue)]">
+          <button className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[13px] font-medium transition-all hover:shadow-[var(--shadow-glow)]">
             Get Started
             <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
           </button>

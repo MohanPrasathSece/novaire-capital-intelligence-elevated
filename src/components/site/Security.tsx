@@ -22,10 +22,10 @@ export function Security() {
             transition={{ duration: 0.9 }}
             className="relative aspect-square max-w-md"
           >
-            <div className="absolute inset-0 rounded-full bg-[var(--royal)]/20 blur-3xl" />
+            <div className="absolute inset-0 rounded-full bg-[var(--gold)]/10 blur-3xl" />
             <div className="absolute inset-8 rounded-full border border-white/10 animate-spin-slow" />
             <div className="absolute inset-16 rounded-full border border-dashed border-white/10 animate-spin-slow [animation-direction:reverse]" />
-            <div className="absolute inset-24 rounded-full bg-gradient-to-br from-[var(--electric)]/40 to-[var(--royal)]/40 blur-xl" />
+            <div className="absolute inset-24 rounded-full bg-[var(--gold)]/30 blur-xl" />
             <div className="absolute inset-0 grid place-items-center">
               <ShieldCheck className="h-24 w-24 text-white" strokeWidth={1} />
             </div>
@@ -47,7 +47,7 @@ export function Security() {
                   transition={{ duration: 0.5, delay: i * 0.06 }}
                   className="rounded-xl glass p-4"
                 >
-                  <it.icon className="h-5 w-5 text-[var(--cyan-neon)]" strokeWidth={1.5} />
+                  <it.icon className="h-5 w-5 text-[var(--gold)]" strokeWidth={1.5} />
                   <div className="mt-3 font-display text-sm text-white">{it.t}</div>
                   <div className="mt-1 text-xs text-white/55 leading-relaxed">{it.d}</div>
                 </motion.div>

@@ -51,7 +51,7 @@ export function Academy() {
                 <span>{4 + (i % 6)} min</span>
               </div>
               <div className="mt-4 font-display text-base text-white leading-tight">{l}</div>
-              <div className="mt-6 flex items-center gap-2 text-xs text-[var(--cyan-neon)]">
+              <div className="mt-6 flex items-center gap-2 text-xs text-[var(--gold)]">
                 Read lesson
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </div>

@@ -33,7 +33,7 @@ export function Steps() {
               className="relative rounded-2xl glass p-6"
             >
               <div className="flex items-center gap-3">
-                <div className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-[var(--electric)] to-[var(--royal)] text-[11px] font-display text-white shadow-[var(--shadow-glow-blue)]">
+                <div className="grid h-8 w-8 place-items-center rounded-full bg-[var(--gold)] text-[11px] font-display text-white shadow-[var(--shadow-glow)]">
                   {s.n}
                 </div>
               </div>

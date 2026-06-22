@@ -22,7 +22,7 @@ export function Marquee() {
               </div>
               <span className="text-white/80">{c.name}</span>
               <span className="font-display text-white">${c.price}</span>
-              <span className={c.up ? "text-emerald-400" : "text-rose-400"}>{c.chg}</span>
+              <span className={c.up ? "text-[var(--gold)]" : "text-white/45"}>{c.chg}</span>
               <span className="text-white/20">•</span>
             </div>
           ))}

@@ -31,7 +31,7 @@ export function Testimonials() {
                 &ldquo;{t.q}&rdquo;
               </blockquote>
               <figcaption className="mt-6 flex items-center gap-3 text-sm">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[var(--electric)] to-[var(--royal)]" />
+                <div className="h-10 w-10 rounded-full bg-[var(--gold)]" />
                 <div>
                   <div className="text-white">{t.a}</div>
                   <div className="text-white/45 text-xs">{t.r}</div>
