@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
 const cols = [
-  { t: "Company", l: ["About", "Careers", "Press", "Contact"] },
-  { t: "Products", l: ["AI Engine", "Markets", "Signals", "Portfolio"] },
-  { t: "Capital", l: ["Lessons", "Glossary", "Research", "Videos"] },
-  { t: "Security", l: ["Overview", "Audits", "Compliance", "Insurance"] },
-  { t: "Legal", l: ["Terms", "Privacy", "Risk", "Cookies"] },
+  { t: "Entreprise", l: ["À Propos", "Carrières", "Presse", "Contact"] },
+  { t: "Produits", l: ["Moteur IA", "Marchés", "Signaux", "Portefeuille"] },
+  { t: "Capital", l: ["Leçons", "Glossaire", "Recherche", "Vidéos"] },
+  { t: "Sécurité", l: ["Aperçu", "Audits", "Conformité", "Assurance"] },
+  { t: "Légal", l: ["Conditions", "Confidentialité", "Risque", "Cookies"] },
 ];
 
 export function Footer() {
@@ -19,15 +19,15 @@ export function Footer() {
               <span className="font-display text-sm tracking-[0.2em] text-white">LUMIÈRE CHAIN</span>
             </div>
             <p className="mt-5 max-w-xs text-sm text-white/50 leading-relaxed">
-              Intelligence for the next generation of digital assets. Built in France.
+              L'intelligence pour la prochaine génération d'actifs numériques. Construit en France.
             </p>
             <form className="mt-6 flex max-w-xs items-center rounded-full glass p-1">
               <input
                 type="email"
-                placeholder="your@email.com"
+                placeholder="votre@email.com"
                 className="flex-1 bg-transparent px-4 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none"
               />
-              <button className="rounded-full bg-white px-4 py-2 text-xs font-medium text-black">Join</button>
+              <button className="rounded-full bg-white px-4 py-2 text-xs font-medium text-black">Rejoindre</button>
             </form>
           </div>
           {cols.map((c) => (
@@ -35,20 +35,20 @@ export function Footer() {
               <div className="text-xs uppercase tracking-[0.2em] text-white/40">{c.t}</div>
               <ul className="mt-5 space-y-2.5 text-sm">
                 {c.l.map((i) => {
-                  if (c.t === "Legal" && i === "Terms") {
+                  if (c.t === "Légal" && i === "Conditions") {
                     return (
                       <li key={i}>
                         <Link to="/terms-and-conditions" className="text-white/65 transition-colors hover:text-white">
-                          Terms & Conditions
+                          Conditions Générales
                         </Link>
                       </li>
                     );
                   }
-                  if (c.t === "Legal" && i === "Privacy") {
+                  if (c.t === "Légal" && i === "Confidentialité") {
                     return (
                       <li key={i}>
                         <Link to="/privacy-policy" className="text-white/65 transition-colors hover:text-white">
-                          Privacy Policy
+                          Politique de Confidentialité
                         </Link>
                       </li>
                     );

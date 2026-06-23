@@ -114,14 +114,14 @@ export function CapitalPortal() {
       });
       const data = await response.json();
       if (response.ok && data.success) {
-        setSuccessMsg("Thank you! Your enquiry has been received successfully.");
+        setSuccessMsg("Merci ! Votre demande a été reçue avec succès.");
         setMessage("");
       } else {
-        setErrorMsg(data.error || "Something went wrong. Please try again.");
+        setErrorMsg(data.error || "Quelque chose s'est mal passé. Veuillez réessayer.");
       }
     } catch (err) {
       console.warn("CRM connection offline, simulating success locally:", err);
-      setSuccessMsg("Thank you! Your enquiry has been received successfully.");
+      setSuccessMsg("Merci ! Votre demande a été reçue avec succès.");
       setMessage("");
     } finally {
       setLoading(false);
@@ -131,13 +131,13 @@ export function CapitalPortal() {
   const tabs = [
     { id: "intro", title: "Introduction", icon: BookOpen },
     { id: "blockchain", title: "Blockchain", icon: Cpu },
-    { id: "investing", title: "Asset Investing", icon: TrendingUp },
-    { id: "trading", title: "Trading Basics", icon: Activity },
-    { id: "ai", title: "AI & Market Analysis", icon: Sparkles },
-    { id: "portfolio", title: "Portfolio Diversification", icon: PieChart },
-    { id: "risk", title: "Risk Management", icon: AlertTriangle },
-    { id: "trends", title: "Market Trends", icon: TrendingUp },
-    { id: "security", title: "Security Best Practices", icon: Lock },
+    { id: "investing", title: "Investissement", icon: TrendingUp },
+    { id: "trading", title: "Bases du Trading", icon: Activity },
+    { id: "ai", title: "IA & Analyse", icon: Sparkles },
+    { id: "portfolio", title: "Diversification", icon: PieChart },
+    { id: "risk", title: "Gestion des Risques", icon: AlertTriangle },
+    { id: "trends", title: "Tendances du Marché", icon: TrendingUp },
+    { id: "security", title: "Sécurité", icon: Lock },
     { id: "faq", title: "FAQ", icon: HelpCircle },
   ];
 
@@ -199,7 +199,7 @@ export function CapitalPortal() {
             className="flex items-center gap-2 mb-3"
           >
             <span className="h-2 w-2 rounded-full bg-[var(--gold)] animate-pulse" />
-            <span className="text-[var(--gold)] font-display text-xs uppercase tracking-[0.2em] font-semibold">Premium Crypto Intelligence</span>
+            <span className="text-[var(--gold)] font-display text-xs uppercase tracking-[0.2em] font-semibold">Intelligence Crypto Premium</span>
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -215,7 +215,7 @@ export function CapitalPortal() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mt-4 text-white/50 text-sm md:text-base leading-relaxed"
           >
-            Explore our curated institutional-grade digital asset platform. Dive deep into market mechanics, blockchain concepts, advanced trading strategies, and proprietary AI signals.
+            Explorez notre plateforme d'actifs numériques de niveau institutionnel. Plongez dans la mécanique du marché, les concepts de blockchain, les stratégies de trading avancées et les signaux d'IA propriétaires.
           </motion.p>
         </div>
 
@@ -280,25 +280,25 @@ export function CapitalPortal() {
                   {/* TAB CONTENT IMPLEMENTATIONS */}
                   {activeTab === "intro" && (
                     <div className="space-y-6">
-                      <h2 className="font-display text-3xl font-medium">Introduction to Cryptocurrency</h2>
+                      <h2 className="font-display text-3xl font-medium">Introduction à la Crypto-monnaie</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        Cryptocurrency is a digital or virtual form of currency that uses cryptography for security. Unlike traditional currencies issued by central banks (fiat), cryptocurrencies operate on decentralized networks, meaning they are not controlled by any single entity or government.
+                        La crypto-monnaie est une forme de monnaie numérique ou virtuelle qui utilise la cryptographie pour la sécurité. Contrairement aux monnaies traditionnelles émises par les banques centrales (fiat), les crypto-monnaies fonctionnent sur des réseaux décentralisés, ce qui signifie qu'elles ne sont contrôlées par aucune entité ou gouvernement unique.
                       </p>
                       <div className="grid md:grid-cols-2 gap-4 pt-4">
                         <div className="glass p-5 rounded-xl border border-white/5 hover:border-[var(--gold)]/20 transition-all">
                           <h3 className="text-white font-medium mb-2 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" /> Decentralization
+                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" /> Décentralisation
                           </h3>
                           <p className="text-white/50 text-xs">
-                            No central clearing house or single point of failure. Network verification is distributed globally.
+                            Pas de chambre de compensation centrale ou de point de défaillance unique. La vérification du réseau est distribuée mondialement.
                           </p>
                         </div>
                         <div className="glass p-5 rounded-xl border border-white/5 hover:border-[var(--gold)]/20 transition-all">
                           <h3 className="text-white font-medium mb-2 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" /> Trustless Transactions
+                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" /> Transactions sans Confiance
                           </h3>
                           <p className="text-white/50 text-xs">
-                            Secure transactions can occur directly between parties (peer-to-peer) without relying on trusted intermediaries like banks.
+                            Des transactions sécurisées peuvent avoir lieu directement entre les parties (pair-à-pair) sans dépendre d'intermédiaires de confiance comme les banques.
                           </p>
                         </div>
                       </div>
@@ -307,27 +307,27 @@ export function CapitalPortal() {
 
                   {activeTab === "blockchain" && (
                     <div className="space-y-6">
-                      <h2 className="font-display text-3xl font-medium">Understanding Blockchain Technology</h2>
+                      <h2 className="font-display text-3xl font-medium">Comprendre la Technologie Blockchain</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        A blockchain is a distributed ledger that records transactions across a network of computers. Each "block" contains a list of transactions, a timestamp, and a reference to the previous block (forming a "chain"). Once recorded, the data in any given block cannot be altered retroactively.
+                        Une blockchain est un registre distribué qui enregistre les transactions sur un réseau d'ordinateurs. Chaque "bloc" contient une liste de transactions, un horodatage et une référence au bloc précédent (formant une "chaîne"). Une fois enregistrées, les données de tout bloc donné ne peuvent pas être modifiées rétroactivement.
                       </p>
                       
                       {/* Blockchain Visual Simulation */}
                       <div className="flex flex-wrap gap-4 items-center justify-center py-6 bg-[#0a0908] rounded-xl border border-white/5">
                         <div className="glass p-4 rounded-xl border-gold/30 text-center w-36">
-                          <div className="text-[10px] text-gold font-mono mb-1">BLOCK #001</div>
-                          <div className="text-xs font-semibold">Genesis Block</div>
+                          <div className="text-[10px] text-gold font-mono mb-1">BLOC #001</div>
+                          <div className="text-xs font-semibold">Bloc Genèse</div>
                           <div className="text-[9px] text-white/30 font-mono mt-2">HASH: 0000a1b2</div>
                         </div>
                         <ArrowRight size={16} className="text-gold animate-pulse" />
                         <div className="glass p-4 rounded-xl border-gold/30 text-center w-36">
-                          <div className="text-[10px] text-gold font-mono mb-1">BLOCK #002</div>
+                          <div className="text-[10px] text-gold font-mono mb-1">BLOC #002</div>
                           <div className="text-xs font-semibold">Tx: Alice → Bob</div>
                           <div className="text-[9px] text-white/30 font-mono mt-2">PREV: 0000a1b2</div>
                         </div>
                         <ArrowRight size={16} className="text-gold animate-pulse" />
                         <div className="glass p-4 rounded-xl border-gold/30 text-center w-36">
-                          <div className="text-[10px] text-gold font-mono mb-1">BLOCK #003</div>
+                          <div className="text-[10px] text-gold font-mono mb-1">BLOC #003</div>
                           <div className="text-xs font-semibold">Tx: Bob → Charlie</div>
                           <div className="text-[9px] text-white/30 font-mono mt-2">PREV: 0000c3d4</div>
                         </div>
@@ -337,12 +337,12 @@ export function CapitalPortal() {
 
                   {activeTab === "investing" && (
                     <div className="space-y-6">
-                      <h2 className="font-display text-3xl font-medium">Digital Asset Investing</h2>
+                      <h2 className="font-display text-3xl font-medium">Investissement en Actifs Numériques</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        Investing in digital assets requires an understanding of utility, tokenomics, adoption metrics, and market cycles. Investors utilize tools such as Dollar-Cost Averaging (DCA), fundamental evaluation, and on-chain metrics to design their strategy.
+                        L'investissement dans les actifs numériques nécessite une compréhension de l'utilité, de la tokenomique, des métriques d'adoption et des cycles de marché. Les investisseurs utilisent des outils tels que l'achat périodique par montants fixes (DCA), l'évaluation fondamentale et les métriques on-chain pour concevoir leur stratégie.
                       </p>
                       <div className="p-5 glass rounded-xl border border-white/5">
-                        <h4 className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-2">Portfolio Simulation Growth</h4>
+                        <h4 className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-2">Croissance de la Simulation de Portefeuille</h4>
                         <div className="h-48 w-full mt-4">
                           <ResponsiveContainer width="100%" height="100%">
                             <AreaChart data={graphData}>
@@ -365,15 +365,15 @@ export function CapitalPortal() {
 
                   {activeTab === "trading" && (
                     <div className="space-y-6">
-                      <h2 className="font-display text-3xl font-medium">Crypto Trading Basics</h2>
+                      <h2 className="font-display text-3xl font-medium">Bases du Trading Crypto</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        Unlike investing, trading focuses on capturing short-to-medium term price movements. Traders analyze candlestick patterns, volume indicators, support/resistance levels, and order books.
+                        Contrairement à l'investissement, le trading se concentre sur la capture des mouvements de prix à court et moyen terme. Les traders analysent les modèles de chandeliers, les indicateurs de volume, les niveaux de support/résistance et les carnets d'ordres.
                       </p>
                       
                       {/* Interactive / Animated Candlestick Visual */}
                       <div className="p-6 bg-[#0a0908] rounded-xl border border-white/5 flex flex-col justify-between">
                         <div className="flex justify-between items-center mb-4">
-                          <span className="text-xs text-white/40">Market Indicator: BTC / USDT</span>
+                          <span className="text-xs text-white/40">Indicateur de Marché : BTC / USDT</span>
                           <span className={`text-xs font-mono transition-colors duration-500 ${priceChange >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
                             ${currentPrice.toLocaleString()} ({priceChange >= 0 ? '+' : ''}{priceChange}%)
                           </span>
@@ -408,29 +408,29 @@ export function CapitalPortal() {
                             );
                           })}
                         </div>
-                        <div className="text-[10px] text-white/30 text-center mt-3">Live simulating price ticks & candlestick ensembles</div>
+                        <div className="text-[10px] text-white/30 text-center mt-3">Simulation en direct des ticks de prix et des ensembles de chandeliers</div>
                       </div>
                     </div>
                   )}
 
                   {activeTab === "ai" && (
                     <div className="space-y-6">
-                      <h2 className="font-display text-3xl font-medium">Artificial Intelligence & Market Analysis</h2>
+                      <h2 className="font-display text-3xl font-medium">Intelligence Artificielle et Analyse de Marché</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        Lumière Chain employs custom AI models to scan global sentiment, order book flows, on-chain transactions, and macroeconomic signals. Our neural models highlight divergence signals and momentum shifts.
+                        Lumière Chain utilise des modèles d'IA personnalisés pour analyser le sentiment mondial, les flux du carnet d'ordres, les transactions on-chain et les signaux macroéconomiques. Nos modèles neuronaux mettent en évidence les signaux de divergence et les changements d'élan.
                       </p>
                       <div className="glass p-5 rounded-xl border border-white/5 space-y-4">
                         <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                          <span className="text-xs text-white/80 font-medium">Sentiment Intelligence Index</span>
-                          <span className="text-xs text-gold">78/100 (Bullish)</span>
+                          <span className="text-xs text-white/80 font-medium">Indice d'Intelligence des Sentiments</span>
+                          <span className="text-xs text-gold">78/100 (Haussier)</span>
                         </div>
                         <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                          <span className="text-xs text-white/80 font-medium">Model Divergence Detection</span>
-                          <span className="text-xs text-emerald-400">Active Buy Signal</span>
+                          <span className="text-xs text-white/80 font-medium">Détection de Divergence de Modèle</span>
+                          <span className="text-xs text-emerald-400">Signal d'Achat Actif</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-xs text-white/80 font-medium">Whale On-Chain Inflow</span>
-                          <span className="text-xs text-white/50">High Inflow Alert</span>
+                          <span className="text-xs text-white/80 font-medium">Afflux On-Chain des Baleines</span>
+                          <span className="text-xs text-white/50">Alerte d'Afflux Élevé</span>
                         </div>
                       </div>
                     </div>
@@ -438,26 +438,26 @@ export function CapitalPortal() {
 
                   {activeTab === "portfolio" && (
                     <div className="space-y-6">
-                      <h2 className="font-display text-3xl font-medium">Portfolio Diversification</h2>
+                      <h2 className="font-display text-3xl font-medium">Diversification de Portefeuille</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        A robust cryptocurrency portfolio balances blue-chip assets, mid-caps, stablecoins, and yield-bearing assets. Proper diversification prevents total portfolio exposure to single smart contract or protocol failures.
+                        Un portefeuille de crypto-monnaie robuste équilibre les actifs de premier ordre, les capitalisations moyennes, les stablecoins et les actifs à rendement. Une diversification appropriée empêche l'exposition totale du portefeuille aux défaillances d'un seul contrat intelligent ou protocole.
                       </p>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-3">
                         <div className="glass p-4 rounded-xl text-center">
                           <div className="text-lg font-bold text-white">50%</div>
-                          <div className="text-[10px] text-white/40 uppercase">Blue-Chips (BTC/ETH)</div>
+                          <div className="text-[10px] text-white/40 uppercase">Valeurs Sûres (BTC/ETH)</div>
                         </div>
                         <div className="glass p-4 rounded-xl text-center">
                           <div className="text-lg font-bold text-white">20%</div>
-                          <div className="text-[10px] text-white/40 uppercase">Layer-1 / L2 Protocols</div>
+                          <div className="text-[10px] text-white/40 uppercase">Protocoles Couche 1 / L2</div>
                         </div>
                         <div className="glass p-4 rounded-xl text-center">
                           <div className="text-lg font-bold text-white">15%</div>
-                          <div className="text-[10px] text-white/40 uppercase">DeFi / Utility</div>
+                          <div className="text-[10px] text-white/40 uppercase">DeFi / Utilité</div>
                         </div>
                         <div className="glass p-4 rounded-xl text-center">
                           <div className="text-lg font-bold text-white">15%</div>
-                          <div className="text-[10px] text-white/40 uppercase">Stablecoins / Cash</div>
+                          <div className="text-[10px] text-white/40 uppercase">Stablecoins / Espèces</div>
                         </div>
                       </div>
                     </div>
@@ -465,14 +465,14 @@ export function CapitalPortal() {
 
                   {activeTab === "risk" && (
                     <div className="space-y-6">
-                      <h2 className="font-display text-3xl font-medium">Risk Management</h2>
+                      <h2 className="font-display text-3xl font-medium">Gestion des Risques</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        The ultimate rule of digital asset trading is preservation of capital. We outline strategies to size positions, manage leverage, establish stop-losses, and mitigate exposure to counterparty risks.
+                        La règle ultime du trading d'actifs numériques est la préservation du capital. Nous décrivons des stratégies pour dimensionner les positions, gérer l'effet de levier, établir des stop-loss et atténuer l'exposition aux risques de contrepartie.
                       </p>
                       <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/10 text-amber-400 text-xs flex gap-3">
                         <AlertTriangle className="shrink-0" size={18} />
                         <div>
-                          <strong>Key Risk Tip:</strong> Never risk more than 1% to 2% of your total trading equity on a single setup, regardless of signal conviction.
+                          <strong>Conseil de Risque Clé :</strong> Ne risquez jamais plus de 1 % à 2 % de votre capital de trading total sur une seule configuration, quelle que soit la conviction du signal.
                         </div>
                       </div>
                     </div>
@@ -480,34 +480,34 @@ export function CapitalPortal() {
 
                   {activeTab === "trends" && (
                     <div className="space-y-6">
-                      <h2 className="font-display text-3xl font-medium">Market Trends</h2>
+                      <h2 className="font-display text-3xl font-medium">Tendances du Marché</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        Market cycles generally transition between four major phases: Accumulation, Markup (Bull Market), Distribution, and Markdown (Bear Market). Recognizing which phase the broader market occupies defines correct strategy deployment.
+                        Les cycles de marché passent généralement par quatre phases majeures : Accumulation, Majoration (Marché Haussier), Distribution et Minoration (Marché Baissier). Reconnaître la phase dans laquelle se trouve le marché au sens large définit le déploiement correct de la stratégie.
                       </p>
                       <p className="text-white/50 text-xs">
-                        By integrating AI analysis with trend indicators, Lumière Chain assists in mapping macroeconomic cycle tops and bottoms.
+                        En intégrant l'analyse de l'IA aux indicateurs de tendance, Lumière Chain aide à cartographier les sommets et les creux du cycle macroéconomique.
                       </p>
                     </div>
                   )}
 
                   {activeTab === "security" && (
                     <div className="space-y-6">
-                      <h2 className="font-display text-3xl font-medium">Security Best Practices</h2>
+                      <h2 className="font-display text-3xl font-medium">Bonnes Pratiques de Sécurité</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        In crypto, self-custody is paramount. You represent your own bank. Learn how to secure your accounts, configure hardware wallets (Ledger/Trezor), recognize phishing attempts, and safely operate DeFi protocols.
+                        En crypto, l'auto-garde est primordiale. Vous représentez votre propre banque. Apprenez à sécuriser vos comptes, à configurer des portefeuilles matériels (Ledger/Trezor), à reconnaître les tentatives de phishing et à utiliser les protocoles DeFi en toute sécurité.
                       </p>
                       <ul className="space-y-2 text-xs text-white/70">
                         <li className="flex items-center gap-2">
                           <span className="w-1 h-1 rounded-full bg-red-500" />
-                          <span>Never share your seed phrase or private keys with anyone.</span>
+                          <span>Ne partagez jamais votre phrase de récupération ou vos clés privées avec qui que ce soit.</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1 h-1 rounded-full bg-red-500" />
-                          <span>Always verify smart contract interactions on explorer scan dashboards.</span>
+                          <span>Vérifiez toujours les interactions de contrats intelligents sur les tableaux de bord d'exploration.</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <span className="w-1 h-1 rounded-full bg-red-500" />
-                          <span>Use multi-factor authentication (MFA) via authenticator apps, not SMS.</span>
+                          <span>Utilisez l'authentification multifacteur (MFA) via des applications d'authentification, pas des SMS.</span>
                         </li>
                       </ul>
                     </div>
@@ -515,15 +515,15 @@ export function CapitalPortal() {
 
                   {activeTab === "faq" && (
                     <div className="space-y-4">
-                      <h2 className="font-display text-3xl font-medium">Frequently Asked Questions</h2>
+                      <h2 className="font-display text-3xl font-medium">Foire aux Questions</h2>
                       <div className="space-y-4">
                         <div className="border-b border-white/5 pb-3">
-                          <h4 className="text-xs font-semibold text-white mb-1">What is the difference between Coin and Token?</h4>
-                          <p className="text-white/50 text-xs">A coin operates on its own blockchain (e.g. Bitcoin, Ethereum), while tokens are built on existing layer-1 blockchains (e.g., ERC-20 tokens on Ethereum).</p>
+                          <h4 className="text-xs font-semibold text-white mb-1">Quelle est la différence entre une Pièce et un Jeton ?</h4>
+                          <p className="text-white/50 text-xs">Une pièce fonctionne sur sa propre blockchain (par exemple, Bitcoin, Ethereum), tandis que les jetons sont construits sur des blockchains de couche 1 existantes (par exemple, les jetons ERC-20 sur Ethereum).</p>
                         </div>
                         <div className="border-b border-white/5 pb-3">
-                          <h4 className="text-xs font-semibold text-white mb-1">How secure are Vercel serverless configurations?</h4>
-                          <p className="text-white/50 text-xs">Highly secure. Environment credentials and database-like connections are parsed completely server-side, never exposed to user clients.</p>
+                          <h4 className="text-xs font-semibold text-white mb-1">Quel est le niveau de sécurité des configurations sans serveur Vercel ?</h4>
+                          <p className="text-white/50 text-xs">Hautement sécurisé. Les informations d'identification d'environnement et les connexions de type base de données sont analysées entièrement côté serveur, jamais exposées aux clients utilisateurs.</p>
                         </div>
                       </div>
                     </div>
@@ -537,8 +537,8 @@ export function CapitalPortal() {
         {/* Contact/Enquiry Form Section */}
         <section className="mt-24 max-w-2xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="font-display text-4xl font-medium">Have questions?</h2>
-            <p className="text-white/50 text-xs mt-2">Get in touch with Lumière Chain's institutional consulting team.</p>
+            <h2 className="font-display text-4xl font-medium">Avez-vous des questions ?</h2>
+            <p className="text-white/50 text-xs mt-2">Contactez l'équipe de conseil institutionnel de Lumière Chain.</p>
           </div>
 
           <motion.div
@@ -550,13 +550,13 @@ export function CapitalPortal() {
             {successMsg ? (
               <div className="text-center py-6">
                 <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-emerald-500/10 text-emerald-400 mb-4">✓</span>
-                <h3 className="font-display text-2xl font-medium mb-2">Enquiry Sent</h3>
+                <h3 className="font-display text-2xl font-medium mb-2">Demande Envoyée</h3>
                 <p className="text-emerald-400 text-sm font-sans">{successMsg}</p>
                 <button
                   onClick={() => setSuccessMsg("")}
                   className="mt-6 text-xs text-white/50 hover:text-white underline cursor-pointer"
                 >
-                  Send another enquiry
+                  Envoyer une autre demande
                 </button>
               </div>
             ) : (
@@ -569,33 +569,33 @@ export function CapitalPortal() {
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-[10px] uppercase tracking-wider text-white/40 font-medium">Full Name</label>
+                    <label className="text-[10px] uppercase tracking-wider text-white/40 font-medium">Nom Complet</label>
                     <input
                       type="text"
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       disabled={loading}
-                      placeholder="Your name"
+                      placeholder="Votre nom"
                       className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 px-4 text-xs text-white focus:outline-none transition-all"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[10px] uppercase tracking-wider text-white/40 font-medium">Email Address</label>
+                    <label className="text-[10px] uppercase tracking-wider text-white/40 font-medium">Adresse Email</label>
                     <input
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={loading}
-                      placeholder="your@email.com"
+                      placeholder="votre@email.com"
                       className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 px-4 text-xs text-white focus:outline-none transition-all"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase tracking-wider text-white/40 font-medium">Phone Number</label>
+                  <label className="text-[10px] uppercase tracking-wider text-white/40 font-medium">Numéro de Téléphone</label>
                   <input
                     type="tel"
                     required
@@ -608,13 +608,13 @@ export function CapitalPortal() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase tracking-wider text-white/40 font-medium">Message (Optional)</label>
+                  <label className="text-[10px] uppercase tracking-wider text-white/40 font-medium">Message (Optionnel)</label>
                   <textarea
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     disabled={loading}
-                    placeholder="Enter your message..."
+                    placeholder="Entrez votre message..."
                     className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 px-4 text-xs text-white focus:outline-none transition-all resize-none"
                   />
                 </div>
@@ -627,7 +627,7 @@ export function CapitalPortal() {
                   {loading ? (
                     <Loader2 size={14} className="animate-spin" />
                   ) : (
-                    <span>Submit Enquiry</span>
+                    <span>Envoyer la Demande</span>
                   )}
                 </button>
               </form>

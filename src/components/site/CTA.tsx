@@ -36,24 +36,24 @@ export function CTA() {
             <div className="absolute inset-0 -z-0 aurora-bg opacity-80" />
             <div className="relative">
               <h2 className="font-display text-4xl md:text-7xl tracking-[-0.04em] leading-[0.95] font-medium">
-                <span className="text-white">Ready to build your</span><br />
-                <span className="text-gradient">crypto intelligence?</span>
+                <span className="text-white">Prêt à construire votre</span><br />
+                <span className="text-gradient">intelligence crypto ?</span>
               </h2>
               <p className="mt-6 text-white/65 max-w-xl mx-auto">
-                Join thousands of investors using Novaire to trade, learn and grow with confidence.
+                Rejoignez des milliers d'investisseurs utilisant Novaire pour trader, apprendre et croître en toute confiance.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-3">
                 <button
                   onClick={handleCreateAccount}
                   className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-shadow hover:shadow-[var(--shadow-glow)] cursor-pointer"
                 >
-                  {user ? "Go to Capital" : "Create Account"}
+                  {user ? "Aller sur Capital" : "Créer un Compte"}
                 </button>
                 <button
                   onClick={handleExploreCapital}
                   className="glass rounded-full px-6 py-3 text-sm font-medium text-white hover:bg-white/5 cursor-pointer"
                 >
-                  Explore Capital
+                  Explorer Capital
                 </button>
               </div>
             </div>

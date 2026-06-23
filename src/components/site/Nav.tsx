@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
-const links = ["Technology", "AI Bot", "Capital", "Security", "FAQ", "Contact"];
+const links = ["Technologie", "Bot IA", "Capital", "Sécurité", "FAQ", "Contact"];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -74,14 +74,14 @@ export function Nav() {
                 to="/capital"
                 className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[15px] font-medium transition-all hover:shadow-[var(--shadow-glow)]"
               >
-                Capital Portal
+                Portail Capital
                 <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
               </Link>
               <button
                 onClick={logout}
                 className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[15px] text-white/80 transition-colors hover:text-white cursor-pointer"
               >
-                Logout
+                Déconnexion
               </button>
             </>
           ) : (
@@ -90,13 +90,13 @@ export function Nav() {
                 onClick={() => setActiveModal("login")}
                 className="hidden md:inline-flex items-center rounded-full px-4 py-2 text-[15px] text-white/80 transition-colors hover:text-white cursor-pointer"
               >
-                Login
+                Connexion
               </button>
               <button
                 onClick={() => setActiveModal("signup")}
                 className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[15px] font-medium transition-all hover:shadow-[var(--shadow-glow)] cursor-pointer"
               >
-                Get Started
+                Commencer
                 <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
               </button>
             </>

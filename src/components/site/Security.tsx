@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { Lock, Key, Cpu, FileCheck, ShieldCheck, Wallet } from "lucide-react";
 
 const items = [
-  { icon: Lock, t: "Cold Wallets", d: "Majority of assets held in air-gapped, geo-distributed cold storage." },
-  { icon: Key, t: "2FA + Passkeys", d: "Biometric and WebAuthn-grade authentication on every sensitive action." },
-  { icon: Wallet, t: "Hardware Wallet", d: "Native Ledger and Trezor integration for self-custody flows." },
-  { icon: Cpu, t: "Encrypted Architecture", d: "End-to-end encryption with HSM-managed keys and zero plaintext." },
-  { icon: FileCheck, t: "Smart Contract Audits", d: "Continuous audits and on-chain monitoring across deployed contracts." },
-  { icon: ShieldCheck, t: "Insurance Coverage", d: "Custodial coverage with tier-1 underwriters for qualifying assets." },
+  { icon: Lock, t: "Portefeuilles à Froid", d: "La majorité des actifs sont conservés dans un stockage à froid hors ligne et géo-distribué." },
+  { icon: Key, t: "2FA + Clés d'Accès", d: "Authentification biométrique et de niveau WebAuthn sur chaque action sensible." },
+  { icon: Wallet, t: "Portefeuille Matériel", d: "Intégration native Ledger et Trezor pour les flux d'auto-garde." },
+  { icon: Cpu, t: "Architecture Chiffrée", d: "Chiffrement de bout en bout avec des clés gérées par HSM et zéro texte en clair." },
+  { icon: FileCheck, t: "Audits de Smart Contracts", d: "Audits continus et surveillance on-chain sur les contrats déployés." },
+  { icon: ShieldCheck, t: "Couverture d'Assurance", d: "Couverture de conservation avec des assureurs de premier plan pour les actifs admissibles." },
 ];
 
 export function Security() {
@@ -32,10 +32,10 @@ export function Security() {
           </motion.div>
 
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-white/40">Security</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-white/40">Sécurité</p>
             <h2 className="mt-4 font-display text-4xl md:text-6xl tracking-[-0.03em] leading-[1] font-medium">
-              <span className="text-white">Designed to</span><br />
-              <span className="text-gradient">protect capital.</span>
+              <span className="text-white">Conçu pour</span><br />
+              <span className="text-gradient">protéger le capital.</span>
             </h2>
             <div className="mt-10 grid sm:grid-cols-2 gap-3">
               {items.map((it, i) => (

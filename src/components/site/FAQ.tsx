@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 
 const faqs = [
-  { q: "What is Lumière Capital?", a: "Lumière Capital is a French AI-driven crypto intelligence platform that combines proprietary machine-learning models, market analytics and a complete capital portal in one experience." },
-  { q: "Who is the platform for?", a: "From first-time investors looking to learn responsibly to active traders and portfolio managers who want institutional-grade analytics with consumer-grade clarity." },
-  { q: "How does the AI engine work?", a: "We fuse news, on-chain flows, market microstructure and macro context through ensembles of specialized models. Outputs are explainable, ranked by confidence and calibrated to your mandate." },
-  { q: "Is my capital secure?", a: "Yes. Cold storage, HSM-managed keys, audited contracts, 2FA / passkeys and qualifying custodial insurance protect your assets at every layer." },
-  { q: "Is Lumière available in my country?", a: "Lumière is available in 170+ countries, with French- and English-language support and region-specific compliance." },
+  { q: "Qu'est-ce que Lumière Capital ?", a: "Lumière Capital est une plateforme d'intelligence crypto française pilotée par l'IA qui combine des modèles d'apprentissage automatique propriétaires, des analyses de marché et un portail capital complet dans une seule expérience." },
+  { q: "À qui s'adresse la plateforme ?", a: "Des investisseurs débutants cherchant à apprendre de manière responsable aux traders actifs et gestionnaires de portefeuille qui souhaitent des analyses de niveau institutionnel avec la clarté d'un outil grand public." },
+  { q: "Comment fonctionne le moteur d'IA ?", a: "Nous fusionnons les actualités, les flux on-chain, la microstructure du marché et le contexte macro grâce à des ensembles de modèles spécialisés. Les résultats sont explicables, classés par confiance et calibrés selon votre mandat." },
+  { q: "Mon capital est-il en sécurité ?", a: "Oui. Le stockage à froid, les clés gérées par HSM, les contrats audités, la 2FA / clés d'accès et une assurance de conservation admissible protègent vos actifs à chaque niveau." },
+  { q: "Lumière est-il disponible dans mon pays ?", a: "Lumière est disponible dans plus de 170 pays, avec un support en français et en anglais et une conformité spécifique à la région." },
 ];
 
 export function FAQ() {
@@ -18,7 +18,7 @@ export function FAQ() {
         <div className="text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-white/40">FAQ</p>
           <h2 className="mt-4 font-display text-4xl md:text-6xl tracking-[-0.03em] leading-[1] font-medium text-white">
-            Frequently <span className="text-gradient">asked.</span>
+            Foire <span className="text-gradient">aux questions.</span>
           </h2>
         </div>
 

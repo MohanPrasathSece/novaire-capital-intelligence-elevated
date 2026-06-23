@@ -33,11 +33,11 @@ export function AuthModals() {
     setSuccess("");
 
     if (!email) {
-      setError("Email address is required.");
+      setError("L'adresse email est requise.");
       return;
     }
     if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
+      setError("Veuillez entrer une adresse email valide.");
       return;
     }
 
@@ -45,7 +45,7 @@ export function AuthModals() {
     const res = await login(email);
 
     if (res.success) {
-      setSuccess("Logged in successfully!");
+      setSuccess("Connecté avec succès !");
       // Short delay to show success message before navigating
       setTimeout(() => {
         handleClose();
@@ -54,7 +54,7 @@ export function AuthModals() {
       }, 600);
     } else {
       setLoading(false);
-      setError(res.error || "Login failed. Check your email or sign up.");
+      setError(res.error || "Échec de la connexion. Vérifiez votre email ou inscrivez-vous.");
     }
   };
 
@@ -64,15 +64,15 @@ export function AuthModals() {
     setSuccess("");
 
     if (!name || !email || !phone) {
-      setError("All fields (Name, Email, Phone Number) are required.");
+      setError("Tous les champs (Nom, Email, Numéro de Téléphone) sont requis.");
       return;
     }
     if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
+      setError("Veuillez entrer une adresse email valide.");
       return;
     }
     if (phone.length < 8) {
-      setError("Please enter a valid phone number.");
+      setError("Veuillez entrer un numéro de téléphone valide.");
       return;
     }
 
@@ -80,7 +80,7 @@ export function AuthModals() {
     const res = await signup(name, email, phone);
 
     if (res.success) {
-      setSuccess("Account created successfully!");
+      setSuccess("Compte créé avec succès !");
       // Short delay to show success message before navigating
       setTimeout(() => {
         handleClose();
@@ -89,7 +89,7 @@ export function AuthModals() {
       }, 600);
     } else {
       setLoading(false);
-      setError(res.error || "Signup failed.");
+      setError(res.error || "Échec de l'inscription.");
     }
   };
 
@@ -130,10 +130,10 @@ export function AuthModals() {
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <div className="h-6 w-6 rounded-md bg-[var(--gold)]/10 flex items-center justify-center text-[10px] font-bold text-gold">L</div>
-                  <span className="font-display text-xs font-semibold tracking-[0.2em] text-gold uppercase">Lumière Chain Access</span>
+                  <span className="font-display text-xs font-semibold tracking-[0.2em] text-gold uppercase">Accès Lumière Chain</span>
                 </div>
-                <h3 className="font-display text-3xl font-medium tracking-tight text-white mb-1">Welcome Back</h3>
-                <p className="text-white/50 text-xs mb-6">Enter your email to access your premium educational portal.</p>
+                <h3 className="font-display text-3xl font-medium tracking-tight text-white mb-1">De Retour</h3>
+                <p className="text-white/50 text-xs mb-6">Entrez votre email pour accéder à votre portail éducatif premium.</p>
 
                 {error && (
                   <div className="mb-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-xs">
@@ -148,7 +148,7 @@ export function AuthModals() {
 
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Email Address</label>
+                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Adresse Email</label>
                     <div className="relative">
                       <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                       <input
@@ -171,14 +171,14 @@ export function AuthModals() {
                       <Loader2 size={16} className="animate-spin" />
                     ) : (
                       <>
-                        <span>Continue</span>
+                        <span>Continuer</span>
                         <Sparkles size={14} className="text-black/60 group-hover:scale-110 transition-transform" />
                       </>
                     )}
                   </button>
 
                   <div className="mt-6 text-center text-xs text-white/40">
-                    Don't have an account?{" "}
+                    Vous n'avez pas de compte ?{" "}
                     <button
                       type="button"
                       onClick={() => {
@@ -188,7 +188,7 @@ export function AuthModals() {
                       }}
                       className="text-gold hover:underline font-medium"
                     >
-                      Sign Up
+                      S'inscrire
                     </button>
                   </div>
                 </form>
@@ -198,10 +198,10 @@ export function AuthModals() {
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <div className="h-6 w-6 rounded-md bg-[var(--gold)]/10 flex items-center justify-center text-[10px] font-bold text-gold">L</div>
-                  <span className="font-display text-xs font-semibold tracking-[0.2em] text-gold uppercase">Lumière Chain Registry</span>
+                  <span className="font-display text-xs font-semibold tracking-[0.2em] text-gold uppercase">Registre Lumière Chain</span>
                 </div>
-                <h3 className="font-display text-3xl font-medium tracking-tight text-white mb-1">Create Account</h3>
-                <p className="text-white/50 text-xs mb-6 font-sans">Start your premium digital asset educational journey.</p>
+                <h3 className="font-display text-3xl font-medium tracking-tight text-white mb-1">Créer un Compte</h3>
+                <p className="text-white/50 text-xs mb-6 font-sans">Commencez votre voyage éducatif premium sur les actifs numériques.</p>
 
                 {error && (
                   <div className="mb-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-xs">
@@ -216,7 +216,7 @@ export function AuthModals() {
 
                 <form onSubmit={handleSignup} className="space-y-4">
                   <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Full Name</label>
+                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Nom Complet</label>
                     <div className="relative">
                       <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                       <input
@@ -231,7 +231,7 @@ export function AuthModals() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Email Address</label>
+                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Adresse Email</label>
                     <div className="relative">
                       <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                       <input
@@ -246,7 +246,7 @@ export function AuthModals() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Phone Number</label>
+                    <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Numéro de Téléphone</label>
                     <div className="relative">
                       <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                       <input
@@ -269,14 +269,14 @@ export function AuthModals() {
                       <Loader2 size={16} className="animate-spin" />
                     ) : (
                       <>
-                        <span>Get Started</span>
+                        <span>Commencer</span>
                         <Sparkles size={14} className="text-black/60 group-hover:scale-110 transition-transform" />
                       </>
                     )}
                   </button>
 
                   <div className="mt-6 text-center text-xs text-white/40">
-                    Already have an account?{" "}
+                    Vous avez déjà un compte ?{" "}
                     <button
                       type="button"
                       onClick={() => {
@@ -286,7 +286,7 @@ export function AuthModals() {
                       }}
                       className="text-gold hover:underline font-medium"
                     >
-                      Log In
+                      Se Connecter
                     </button>
                   </div>
                 </form>

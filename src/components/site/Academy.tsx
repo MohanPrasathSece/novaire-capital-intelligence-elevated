@@ -3,22 +3,22 @@ import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const lessons = [
-  "Introduction to Cryptocurrency",
-  "Understanding Blockchain",
-  "Digital Asset Investing",
-  "Crypto Trading Basics",
-  "Technical Analysis",
-  "Fundamental Analysis",
-  "AI & Market Analysis",
-  "Portfolio Diversification",
-  "Risk Management",
-  "Market Psychology",
+  "Introduction à la Crypto-monnaie",
+  "Comprendre la Blockchain",
+  "Investissement en Actifs Numériques",
+  "Bases du Trading Crypto",
+  "Analyse Technique",
+  "Analyse Fondamentale",
+  "IA & Analyse de Marché",
+  "Diversification de Portefeuille",
+  "Gestion des Risques",
+  "Psychologie du Marché",
   "Stablecoins",
-  "Layer 1 & Layer 2",
+  "Couche 1 & Couche 2",
   "DeFi",
   "NFTs & Tokenomics",
-  "Wallets & Security",
-  "Future of AI in Crypto",
+  "Portefeuilles & Sécurité",
+  "Avenir de l'IA dans la Crypto",
 ];
 
 export function Academy() {
@@ -38,13 +38,12 @@ export function Academy() {
     <section id="academy" className="relative z-10 py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-white/40">Academy</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-white/40">Académie</p>
           <h2 className="mt-4 font-display text-4xl md:text-6xl tracking-[-0.03em] leading-[1] font-medium text-white">
-            Learn the new <span className="text-gradient">financial language.</span>
+            Apprenez le nouveau <span className="text-gradient">langage financier.</span>
           </h2>
           <p className="mt-6 text-white/55">
-            A curated curriculum, written by traders and engineers. Sixteen modules — from your
-            first wallet to deploying AI strategies — designed to make you genuinely fluent.
+            Un programme élaboré, rédigé par des traders et des ingénieurs. Seize modules — de votre premier portefeuille au déploiement de stratégies d'IA — conçus pour vous rendre véritablement fluide.
           </p>
         </div>
 
@@ -62,12 +61,12 @@ export function Academy() {
               className="group relative block rounded-2xl glass p-5 transition-colors hover:bg-white/[0.04]"
             >
               <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-white/40">
-                <span>Lesson {String(i + 1).padStart(2, "0")}</span>
+                <span>Leçon {String(i + 1).padStart(2, "0")}</span>
                 <span>{4 + (i % 6)} min</span>
               </div>
               <div className="mt-4 font-display text-base text-white leading-tight">{l}</div>
               <div className="mt-6 flex items-center gap-2 text-xs text-[var(--gold)]">
-                Read lesson
+                Lire la leçon
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </div>
             </motion.a>

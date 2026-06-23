@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 
 const steps = [
-  { n: "01", t: "Create Account", d: "Onboard in under two minutes with bank-grade KYC." },
-  { n: "02", t: "Learn Crypto", d: "Walk through the Capital Portal at your own pace, French or English." },
-  { n: "03", t: "Activate AI", d: "Calibrate the engine to your goals, capital and risk band." },
-  { n: "04", t: "Practice", d: "Test strategies in our simulator before deploying real capital." },
-  { n: "05", t: "Trade Responsibly", d: "Run live with guardrails, alerts and continuous review." },
+  { n: "01", t: "Créer un Compte", d: "Inscrivez-vous en moins de deux minutes avec un KYC de niveau bancaire." },
+  { n: "02", t: "Apprendre la Crypto", d: "Parcourez le Portail Capital à votre rythme, en français ou en anglais." },
+  { n: "03", t: "Activer l'IA", d: "Calibrez le moteur selon vos objectifs, votre capital et votre niveau de risque." },
+  { n: "04", t: "S'entraîner", d: "Testez les stratégies dans notre simulateur avant de déployer du vrai capital." },
+  { n: "05", t: "Trader de Manière Responsable", d: "Opérez en direct avec des garde-fous, des alertes et une révision continue." },
 ];
 
 export function Steps() {
@@ -14,9 +14,9 @@ export function Steps() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-end justify-between mb-14">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-white/40">How it works</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-white/40">Comment ça marche</p>
             <h2 className="mt-4 font-display text-4xl md:text-6xl tracking-[-0.03em] leading-[1] font-medium text-white">
-              Five steps. <span className="text-gradient">Zero friction.</span>
+              Cinq étapes. <span className="text-gradient">Zéro friction.</span>
             </h2>
           </div>
         </div>

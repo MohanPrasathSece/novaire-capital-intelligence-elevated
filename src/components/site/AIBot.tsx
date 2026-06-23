@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 
 const streams = [
-  { label: "News & Sentiment", value: "+0.84", tone: "emerald" },
-  { label: "Whale Wallet Flow", value: "Accumulation", tone: "cyan" },
-  { label: "Market Regime", value: "Risk-on", tone: "violet" },
-  { label: "Technical Bias", value: "Bullish", tone: "emerald" },
-  { label: "ML Confidence", value: "92.4%", tone: "blue" },
+  { label: "Actualités & Sentiment", value: "+0.84", tone: "emerald" },
+  { label: "Flux Portefeuille Baleine", value: "Accumulation", tone: "cyan" },
+  { label: "Régime de Marché", value: "Risk-on", tone: "violet" },
+  { label: "Biais Technique", value: "Haussier", tone: "emerald" },
+  { label: "Confiance ML", value: "92.4%", tone: "blue" },
 ];
 
 export function AIBot() {
@@ -18,24 +18,22 @@ export function AIBot() {
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-white/40">AI Trading Engine</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-white/40">Moteur de Trading IA</p>
           <h2 className="mt-4 font-display text-4xl md:text-6xl tracking-[-0.03em] leading-[1] font-medium">
-            <span className="text-white">A model that</span><br />
-            <span className="text-gradient">never sleeps.</span>
+            <span className="text-white">Un modèle qui</span><br />
+            <span className="text-gradient">ne dort jamais.</span>
           </h2>
           <p className="mt-6 text-white/60 max-w-md">
-            The Lumière Chain engine continuously fuses news, on-chain flows, market microstructure
-            and macro signals. It then translates that intelligence into actionable, explainable
-            decisions — calibrated to your risk profile.
+            Le moteur Lumière Chain fusionne en permanence les actualités, les flux on-chain, la microstructure du marché et les signaux macro. Il traduit ensuite cette intelligence en décisions actionnables et explicables — calibrées selon votre profil de risque.
           </p>
 
           <ul className="mt-8 space-y-3 text-sm">
             {[
-              "Real-time news ingestion across 40+ languages",
-              "Whale wallet & exchange flow detection",
-              "Sentiment scoring from social and dev activity",
-              "Adaptive technical indicator ensembles",
-              "Reinforcement-learning execution policies",
+              "Ingestion d'actualités en temps réel dans plus de 40 langues",
+              "Détection des flux de portefeuilles de baleines et d'échanges",
+              "Évaluation du sentiment à partir de l'activité sociale et des développeurs",
+              "Ensembles d'indicateurs techniques adaptatifs",
+              "Politiques d'exécution par apprentissage par renforcement",
             ].map((line) => (
               <li key={line} className="flex items-start gap-3 text-white/70">
                 <span className="mt-1.5 h-1 w-1 rounded-full bg-[var(--gold)] shadow-[0_0_8px_var(--gold)]" />
@@ -61,7 +59,7 @@ export function AIBot() {
                   <span className="h-2 w-2 rounded-full bg-[var(--gold)] animate-pulse" />
                   lumiere.engine
                 </div>
-                <span>v3.0 · live</span>
+                <span>v3.0 · en direct</span>
               </div>
 
               <div className="mt-5 rounded-2xl bg-black/40 p-5">
@@ -72,7 +70,7 @@ export function AIBot() {
                   </div>
                   <div className="text-right">
                     <div className="text-[11px] uppercase tracking-widest text-white/40">Signal</div>
-                    <div className="font-display text-lg text-[var(--gold)]">Strong Buy · 92%</div>
+                    <div className="font-display text-lg text-[var(--gold)]">Achat Fort · 92%</div>
                   </div>
                 </div>
 

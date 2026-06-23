@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import { Brain, ChartBar, Radar, Signal, Shield, Activity, HeartPulse, Bell } from "lucide-react";
 
 const features = [
-  { icon: Brain, title: "AI Predictions", desc: "Proprietary models forecast directional bias and volatility windows across 200+ assets." },
-  { icon: ChartBar, title: "Portfolio Intelligence", desc: "Correlation, drawdown, and exposure analytics calibrated to your risk profile." },
-  { icon: Radar, title: "Institutional Analytics", desc: "Order flow, liquidity heatmaps and whale wallet tracking from a single surface." },
-  { icon: Signal, title: "Market Scanner", desc: "Continuous regime detection surfaces breakouts the moment they form." },
-  { icon: Activity, title: "Trading Signals", desc: "Time-stamped signals with conviction scores, entries, invalidations and targets." },
-  { icon: Shield, title: "Risk Engine", desc: "Position sizing, stop placement and stress tests, automated to your mandate." },
-  { icon: HeartPulse, title: "Portfolio Health", desc: "A living score that evolves with macro, on-chain flows and your behavior." },
-  { icon: Bell, title: "Real-time Alerts", desc: "Push, email and webhook alerts on the conditions that actually matter." },
+  { icon: Brain, title: "Prédictions IA", desc: "Les modèles propriétaires prévoient les biais directionnels et les fenêtres de volatilité sur plus de 200 actifs." },
+  { icon: ChartBar, title: "Intelligence de Portefeuille", desc: "Analyses de corrélation, de drawdown et d'exposition calibrées selon votre profil de risque." },
+  { icon: Radar, title: "Analyses Institutionnelles", desc: "Flux d'ordres, cartes thermiques de liquidité et suivi des portefeuilles de baleines depuis une interface unique." },
+  { icon: Signal, title: "Scanner de Marché", desc: "La détection continue de régime identifie les cassures dès qu'elles se forment." },
+  { icon: Activity, title: "Signaux de Trading", desc: "Signaux horodatés avec scores de conviction, entrées, invalidations et objectifs." },
+  { icon: Shield, title: "Moteur de Risque", desc: "Dimensionnement des positions, placement de stops et stress tests, automatisés selon votre mandat." },
+  { icon: HeartPulse, title: "Santé du Portefeuille", desc: "Un score vivant qui évolue avec la macroéconomie, les flux on-chain et votre comportement." },
+  { icon: Bell, title: "Alertes en Temps Réel", desc: "Alertes push, email et webhook sur les conditions qui comptent vraiment." },
 ];
 
 export function Features() {
@@ -23,14 +23,13 @@ export function Features() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <p className="text-xs uppercase tracking-[0.3em] text-white/40">Why Lumière Chain</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-white/40">Pourquoi Lumière Chain</p>
           <h2 className="mt-4 font-display text-4xl md:text-6xl tracking-[-0.03em] leading-[1] font-medium">
-            <span className="text-white">An intelligence layer</span><br />
-            <span className="text-gradient">for digital assets.</span>
+            <span className="text-white">Une couche d'intelligence</span><br />
+            <span className="text-gradient">pour les actifs numériques.</span>
           </h2>
           <p className="mt-6 text-white/55 max-w-xl">
-            Eight engines, one continuous system. Built in France with the discipline of an
-            institutional desk and the clarity of consumer software.
+            Huit moteurs, un système continu. Construit en France avec la discipline d'un bureau institutionnel et la clarté d'un logiciel grand public.
           </p>
         </motion.div>
  

@@ -28,9 +28,9 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--gold)] opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--gold)]" />
             </span>
-            <span>Live · French AI Crypto Intelligence</span>
+            <span>En direct · Intelligence Crypto IA Française</span>
             <span className="text-white/30">|</span>
-            <span className="text-gradient">v3.0 Engine</span>
+            <span className="text-gradient">Moteur v3.0</span>
           </div>
         </motion.div>
 
@@ -42,9 +42,9 @@ export function Hero() {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="font-display text-[clamp(2.5rem,6.5vw,5rem)] leading-[0.95] tracking-[-0.04em] font-medium"
             >
-              <span className="block text-white">Trade Smarter.</span>
-              <span className="block text-gradient">Powered by</span>
-              <span className="block text-white/90">Intelligence.</span>
+              <span className="block text-white">Tradez Plus Intelligemment.</span>
+              <span className="block text-gradient">Propulsé par</span>
+              <span className="block text-white/90">l'Intelligence.</span>
             </motion.h1>
 
             <motion.p
@@ -53,9 +53,7 @@ export function Hero() {
               transition={{ duration: 0.9, delay: 0.2 }}
               className="mt-8 max-w-xl text-base lg:text-lg text-white/60 leading-relaxed"
             >
-              A French-built intelligent crypto trading platform combining proprietary AI models,
-              institutional market analytics, on-chain insights and a world-class academy for the
-              next generation of investors.
+              Une plateforme de trading crypto intelligente construite en France combinant des modèles d'IA propriétaires, des analyses de marché institutionnelles, des données on-chain et une académie de classe mondiale pour la prochaine génération d'investisseurs.
             </motion.p>
 
             <motion.div
@@ -65,14 +63,14 @@ export function Hero() {
               className="mt-10 flex flex-wrap items-center gap-3"
             >
               <button className="group relative inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-all hover:shadow-[var(--shadow-glow)]">
-                Start Trading
+                Commencer le Trading
                 <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
               </button>
               <button className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white transition-all hover:bg-white/5">
                 <span className="grid h-5 w-5 place-items-center rounded-full bg-white/10">
                   <span className="ml-0.5 h-0 w-0 border-y-[4px] border-l-[6px] border-y-transparent border-l-white" />
                 </span>
-                Watch Demo
+                Voir la Démo
               </button>
             </motion.div>
 
@@ -82,11 +80,11 @@ export function Hero() {
               transition={{ duration: 1, delay: 0.6 }}
               className="mt-12 flex items-center gap-8 text-xs text-white/40"
             >
-              <div><span className="text-white text-xl font-display">$12B+</span><div>Analyzed</div></div>
+              <div><span className="text-white text-xl font-display">12 Md$+</span><div>Analysé</div></div>
               <div className="h-8 w-px bg-white/10" />
-              <div><span className="text-white text-xl font-display">200+</span><div>AI Models</div></div>
+              <div><span className="text-white text-xl font-display">200+</span><div>Modèles d'IA</div></div>
               <div className="h-8 w-px bg-white/10" />
-              <div><span className="text-white text-xl font-display">170+</span><div>Countries</div></div>
+              <div><span className="text-white text-xl font-display">170+</span><div>Pays</div></div>
             </motion.div>
           </div>
 
@@ -113,7 +111,7 @@ export function Hero() {
                 { sym: "BTC", price: "$98,420", up: true, pos: "top-0 left-1/2 -translate-x-1/2 -translate-y-2" },
                 { sym: "ETH", price: "$3,512", up: true, pos: "right-0 top-1/3 translate-x-4" },
                 { sym: "SOL", price: "$248.10", up: false, pos: "bottom-2 right-6" },
-                { sym: "AI Signal", price: "Strong Buy", up: true, pos: "left-0 bottom-1/3 -translate-x-6" },
+                { sym: "Signal IA", price: "Achat Fort", up: true, pos: "left-0 bottom-1/3 -translate-x-6" },
               ].map((t) => (
                 <div
                   key={t.sym}

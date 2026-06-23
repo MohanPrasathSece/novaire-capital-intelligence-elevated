@@ -14,7 +14,7 @@ export function TermsConditions() {
       <header className="relative z-10 max-w-4xl mx-auto px-6 pt-12 flex justify-between items-center">
         <Link to="/" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm font-medium">
           <ArrowLeft size={16} />
-          Back to Home
+          Retour à l'accueil
         </Link>
         <div className="flex items-center gap-2.5">
           <div className="h-8 w-8 rounded-lg bg-[var(--gold)] grid place-items-center text-xs font-bold text-black">L</div>
@@ -31,179 +31,179 @@ export function TermsConditions() {
         >
           <div className="flex items-center gap-2 mb-3">
             <FileText size={18} className="text-gold" />
-            <span className="text-gold font-display text-xs uppercase tracking-[0.2em] font-semibold">Legal Documentation</span>
+            <span className="text-gold font-display text-xs uppercase tracking-[0.2em] font-semibold">Documentation Légale</span>
           </div>
           <h1 className="font-display text-5xl md:text-6xl tracking-tight font-medium text-white mb-4">
-            Terms & Conditions
+            Conditions Générales
           </h1>
           <div className="flex items-center gap-2 text-white/40 text-xs mb-12">
             <Clock size={14} />
-            <span>Last Updated: June 22, 2026</span>
+            <span>Dernière mise à jour : 22 Juin 2026</span>
           </div>
 
           <div className="glass-strong p-8 md:p-12 rounded-2xl border border-white/5 space-y-8 text-sm md:text-base leading-relaxed text-white/70">
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">1. Acceptance of Terms</h2>
+              <h2 className="font-display text-2xl font-medium text-white">1. Acceptation des conditions</h2>
               <p>
-                By accessing or using the Lumière Chain website, you agree to be bound by these Terms & Conditions. If you do not agree to all of these terms, do not access or use this website.
+                En accédant au site Lumière Chain ou en l'utilisant, vous acceptez d'être lié par ces Conditions Générales. Si vous n'acceptez pas toutes ces conditions, n'accédez pas ou n'utilisez pas ce site.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">2. Eligibility</h2>
+              <h2 className="font-display text-2xl font-medium text-white">2. Éligibilité</h2>
               <p>
-                To be eligible to access and use our website, you must be at least 18 years of age and possess the legal authority to enter into these terms. By using the platform, you represent and warrant that you meet these eligibility requirements.
+                Pour pouvoir accéder et utiliser notre site Web, vous devez avoir au moins 18 ans et posséder l'autorité légale pour accepter ces conditions. En utilisant la plateforme, vous déclarez et garantissez que vous remplissez ces conditions d'éligibilité.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">3. Website Purpose</h2>
+              <h2 className="font-display text-2xl font-medium text-white">3. Objectif du site Web</h2>
               <p>
-                Lumière Chain provides cryptocurrency market analytics, AI insights, and an educational academy. The services provided are for educational and informational purposes only. We do not operate as an exchange, brokerage, or regulated financial institution.
+                Lumière Chain fournit des analyses du marché des crypto-monnaies, des informations sur l'IA et une académie éducative. Les services fournis le sont à des fins éducatives et informatives uniquement. Nous n'opérons pas en tant que bourse, maison de courtage ou institution financière réglementée.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">4. User Responsibilities</h2>
+              <h2 className="font-display text-2xl font-medium text-white">4. Responsabilités de l'utilisateur</h2>
               <p>
-                You are responsible for keeping your account information, specifically your email login, confidential. You agree to notify us immediately of any unauthorized use of your account or any other breach of security.
+                Vous êtes responsable de la confidentialité des informations de votre compte, en particulier de votre identifiant de connexion par e-mail. Vous acceptez de nous informer immédiatement de toute utilisation non autorisée de votre compte ou de toute autre violation de la sécurité.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">5. Acceptable Use</h2>
+              <h2 className="font-display text-2xl font-medium text-white">5. Utilisation acceptable</h2>
               <p>
-                You agree to use our website and services only for lawful purposes. You shall comply with all applicable local, national, and international laws and regulations while utilizing our academy or tools.
+                Vous acceptez de n'utiliser notre site Web et nos services qu'à des fins légales. Vous devez vous conformer à toutes les lois et réglementations locales, nationales et internationales applicables lors de l'utilisation de notre académie ou de nos outils.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">6. Prohibited Activities</h2>
+              <h2 className="font-display text-2xl font-medium text-white">6. Activités interdites</h2>
               <p>
-                You may not:
+                Vous ne devez pas :
               </p>
               <ul className="list-disc pl-5 space-y-1.5 text-white/60">
-                <li>Reverse engineer, decompile, or disassemble any part of the site.</li>
-                <li>Use bots, scrapers, or spiders to collect intelligence content.</li>
-                <li>Interfere with or disrupt the security of the serverless backend.</li>
-                <li>Attempt to bypass Vercel Blob authentication mechanisms.</li>
+                <li>Rétro-ingénierie, décompiler ou désassembler toute partie du site.</li>
+                <li>Utiliser des bots, des scrapers ou des spiders pour collecter du contenu d'intelligence.</li>
+                <li>Interférer avec ou perturber la sécurité du backend sans serveur.</li>
+                <li>Tenter de contourner les mécanismes d'authentification Vercel Blob.</li>
               </ul>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">7. Intellectual Property</h2>
+              <h2 className="font-display text-2xl font-medium text-white">7. Propriété intellectuelle</h2>
               <p>
-                All content on this website, including text, graphics, logos, illustrations, educational slides, and code, is the property of Lumière Chain and is protected by copyright and intellectual property laws. You may not reproduce, distribute, or modify any materials without our express written consent.
+                Tout le contenu de ce site Web, y compris les textes, graphiques, logos, illustrations, diapositives pédagogiques et codes, est la propriété de Lumière Chain et est protégé par le droit d'auteur et les lois sur la propriété intellectuelle. Vous ne pouvez reproduire, distribuer ou modifier aucun document sans notre consentement écrit exprès.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">8. Accuracy of Information</h2>
+              <h2 className="font-display text-2xl font-medium text-white">8. Exactitude des informations</h2>
               <p>
-                While we strive to ensure that the educational content and AI analysis are accurate and up-to-date, we do not warrant or guarantee the completeness, accuracy, or reliability of any information displayed on the website.
+                Bien que nous nous efforcions de garantir que le contenu éducatif et l'analyse de l'IA sont exacts et à jour, nous ne garantissons pas l'exhaustivité, l'exactitude ou la fiabilité des informations affichées sur le site Web.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">9. No Financial Advice</h2>
+              <h2 className="font-display text-2xl font-medium text-white">9. Aucun conseil financier</h2>
               <p>
-                All content, tools, charts, and analysis provided by Lumière Chain are for informational and educational purposes only. None of the information contained on this website constitutes financial advice.
+                Tout le contenu, les outils, les graphiques et l'analyse fournis par Lumière Chain sont fournis à des fins d'information et d'éducation uniquement. Aucune information contenue sur ce site Web ne constitue un conseil financier.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">10. No Investment Advice</h2>
+              <h2 className="font-display text-2xl font-medium text-white">10. Aucun conseil en investissement</h2>
               <p>
-                No information on this site should be interpreted as investment advice or a recommendation to buy, sell, or hold any cryptocurrency or digital asset.
+                Aucune information sur ce site ne doit être interprétée comme un conseil en investissement ou une recommandation d'acheter, de vendre ou de conserver une crypto-monnaie ou un actif numérique.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">11. Cryptocurrency Risk Disclosure</h2>
+              <h2 className="font-display text-2xl font-medium text-white">11. Divulgation des risques liés aux crypto-monnaies</h2>
               <p>
-                Trading and investing in cryptocurrencies involve significant risk. The prices of digital assets are highly volatile and unpredictable. You could lose all or a substantial portion of your capital. You should conduct your own research and consult with a licensed financial advisor before making any investment decisions.
+                Le trading et l'investissement dans les crypto-monnaies impliquent des risques importants. Les prix des actifs numériques sont très volatils et imprévisibles. Vous pourriez perdre tout ou une partie substantielle de votre capital. Vous devriez effectuer vos propres recherches et consulter un conseiller financier agréé avant de prendre toute décision d'investissement.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">12. No Guarantee of Returns</h2>
+              <h2 className="font-display text-2xl font-medium text-white">12. Aucune garantie de rendement</h2>
               <p>
-                Lumière Chain does not guarantee any returns, profits, or specific outcomes from using our educational modules, market indicators, or AI analytics tools. Past performance is not indicative of future results.
+                Lumière Chain ne garantit aucun rendement, bénéfice ou résultat spécifique suite à l'utilisation de nos modules éducatifs, indicateurs de marché ou outils d'analyse d'IA. Les performances passées ne préjugent pas des résultats futurs.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">13. Limitation of Liability</h2>
+              <h2 className="font-display text-2xl font-medium text-white">13. Limitation de responsabilité</h2>
               <p>
-                To the maximum extent permitted by applicable law, Lumière Chain and its affiliates, directors, or employees shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of or inability to use the website, including trading losses.
+                Dans toute la mesure permise par la loi applicable, Lumière Chain et ses affiliés, directeurs ou employés ne seront pas responsables des dommages directs, indirects, accessoires, spéciaux ou consécutifs résultant de votre utilisation ou de votre incapacité à utiliser le site Web, y compris les pertes de trading.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">14. Indemnification</h2>
+              <h2 className="font-display text-2xl font-medium text-white">14. Indemnisation</h2>
               <p>
-                You agree to indemnify, defend, and hold harmless Lumière Chain and its affiliates from and against any claims, liabilities, damages, losses, and expenses arising out of or in any way connected with your access to or use of the Website.
+                Vous acceptez d'indemniser, de défendre et de dégager de toute responsabilité Lumière Chain et ses sociétés affiliées pour toute réclamation, responsabilité, dommages, pertes et dépenses découlant de ou liés de quelque manière que ce soit à votre accès ou à votre utilisation du site Web.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">15. Third-Party Links</h2>
+              <h2 className="font-display text-2xl font-medium text-white">15. Liens vers des tiers</h2>
               <p>
-                Our Website may contain links to third-party web sites or services that are not owned or controlled by Lumière Chain. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites.
+                Notre site Web peut contenir des liens vers des sites Web ou des services tiers qui ne sont pas détenus ou contrôlés par Lumière Chain. Nous n'avons aucun contrôle sur, et n'assumons aucune responsabilité quant au contenu, aux politiques de confidentialité ou aux pratiques des sites Web tiers.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">16. Privacy Policy Reference</h2>
+              <h2 className="font-display text-2xl font-medium text-white">16. Référence à la politique de confidentialité</h2>
               <p>
-                Your use of our website is also governed by our Privacy Policy. Please review our Privacy Policy to understand how we collect, use, and secure your personal information.
+                Votre utilisation de notre site Web est également régie par notre Politique de Confidentialité. Veuillez consulter notre Politique de Confidentialité pour comprendre comment nous collectons, utilisons et sécurisons vos informations personnelles.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">17. Suspension of Access</h2>
+              <h2 className="font-display text-2xl font-medium text-white">17. Suspension de l'accès</h2>
               <p>
-                We reserve the right to suspend or terminate your access to the Website or the Academy portal at our sole discretion, without notice, for conduct that we believe violates these Terms or is harmful to other users or our business interests.
+                Nous nous réservons le droit de suspendre ou de résilier votre accès au site Web ou au portail de l'Académie à notre seule discrétion, sans préavis, pour toute conduite que nous estimons violer ces conditions ou nuire à d'autres utilisateurs ou à nos intérêts commerciaux.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">18. Governing Law</h2>
+              <h2 className="font-display text-2xl font-medium text-white">18. Droit applicable</h2>
               <p>
-                These Terms & Conditions shall be governed by and construed in accordance with the laws of France, without regard to its conflict of law provisions.
+                Ces Conditions Générales seront régies et interprétées conformément aux lois de la France, sans égard à ses dispositions relatives aux conflits de lois.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">19. Dispute Resolution</h2>
+              <h2 className="font-display text-2xl font-medium text-white">19. Résolution des litiges</h2>
               <p>
-                Any dispute, controversy, or claim arising out of or relating to these terms, or the breach thereof, shall be settled by the competent courts of Paris, France.
+                Tout litige, controverse ou réclamation découlant de ou lié à ces conditions, ou à leur violation, sera réglé par les tribunaux compétents de Paris, France.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">20. Severability</h2>
+              <h2 className="font-display text-2xl font-medium text-white">20. Divisibilité</h2>
               <p>
-                If any provision of these Terms is found to be invalid or unenforceable by a court of competent jurisdiction, the remaining provisions of these Terms will remain in full force and effect.
+                Si une disposition de ces Conditions est jugée invalide ou inapplicable par un tribunal compétent, les autres dispositions de ces Conditions resteront pleinement en vigueur.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">21. Changes to Terms</h2>
+              <h2 className="font-display text-2xl font-medium text-white">21. Modifications des conditions</h2>
               <p>
-                We reserve the right, at our sole discretion, to modify or replace these Terms at any time. We will indicate the date of the latest update at the top of this page. Your continued use of the site following any updates constitutes acceptance of the new terms.
+                Nous nous réservons le droit, à notre seule discrétion, de modifier ou de remplacer ces conditions à tout moment. Nous indiquerons la date de la dernière mise à jour en haut de cette page. Votre utilisation continue du site après toute mise à jour constitue une acceptation des nouvelles conditions.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-display text-2xl font-medium text-white">22. Contact Information</h2>
+              <h2 className="font-display text-2xl font-medium text-white">22. Informations de contact</h2>
               <p>
-                If you have any questions about these Terms, please contact us:
+                Si vous avez des questions concernant ces conditions, veuillez nous contacter :
               </p>
               <p className="text-white/60">
                 Lumière Chain<br />
                 Paris, France<br />
-                Email: legal@lumierechain.com
+                Email : legal@lumierechain.com
               </p>
             </section>
           </div>

@@ -18,7 +18,7 @@ export function ContactForm() {
     setError("");
 
     if (!name || !email || !phone) {
-      setError("Name, email, and phone number are required.");
+      setError("Le nom, l'email et le numéro de téléphone sont requis.");
       setLoading(false);
       return;
     }
@@ -35,17 +35,17 @@ export function ContactForm() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        setSuccess("Thank you! Your enquiry has been received successfully.");
+        setSuccess("Merci ! Votre demande a été reçue avec succès.");
         setName("");
         setEmail("");
         setPhone("");
         setMessage("");
       } else {
-        setError(data.error || "Failed to submit enquiry. Please try again.");
+        setError(data.error || "Échec de l'envoi de la demande. Veuillez réessayer.");
       }
     } catch (err) {
       console.warn("CRM connection offline, simulating success locally:", err);
-      setSuccess("Thank you! Your enquiry has been received successfully.");
+      setSuccess("Merci ! Votre demande a été reçue avec succès.");
       setName("");
       setEmail("");
       setPhone("");
@@ -67,12 +67,12 @@ export function ContactForm() {
         >
           <div className="relative glass-strong p-8 md:p-12 text-left">
             <div className="text-center mb-10">
-              <span className="text-[var(--gold)] font-display text-[15px] uppercase tracking-[0.2em] font-semibold">Consulting & Advisory</span>
+              <span className="text-[var(--gold)] font-display text-[15px] uppercase tracking-[0.2em] font-semibold">Consultation & Conseil</span>
               <h2 className="font-display text-4xl md:text-5xl tracking-tight font-medium mt-2">
-                Get in Touch
+                Contactez-nous
               </h2>
               <p className="mt-3 text-white/50 text-[15px] max-w-md mx-auto">
-                Have questions about our proprietary AI models or corporate consulting? Complete the form below.
+                Vous avez des questions sur nos modèles d'IA propriétaires ou sur nos services de conseil aux entreprises ? Remplissez le formulaire ci-dessous.
               </p>
             </div>
 
@@ -85,13 +85,13 @@ export function ContactForm() {
                 <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-emerald-500/10 text-emerald-400 mb-6 text-2xl font-bold">
                   ✓
                 </div>
-                <h3 className="font-display text-2xl font-medium text-white mb-2">Enquiry Received</h3>
+                <h3 className="font-display text-2xl font-medium text-white mb-2">Demande Reçue</h3>
                 <p className="text-emerald-400 text-[15px]">{success}</p>
                 <button
                   onClick={() => setSuccess("")}
                   className="mt-6 text-[15px] text-white/50 hover:text-white underline cursor-pointer"
                 >
-                  Send another message
+                  Envoyer un autre message
                 </button>
               </motion.div>
             ) : (
@@ -104,7 +104,7 @@ export function ContactForm() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Full Name</label>
+                    <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Nom Complet</label>
                     <div className="relative">
                       <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                       <input
@@ -120,7 +120,7 @@ export function ContactForm() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Email Address</label>
+                    <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Adresse Email</label>
                     <div className="relative">
                       <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                       <input
@@ -137,7 +137,7 @@ export function ContactForm() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Phone Number</label>
+                  <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Numéro de Téléphone</label>
                   <div className="relative">
                     <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
                     <input
@@ -153,10 +153,10 @@ export function ContactForm() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Message (Optional)</label>
+                  <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Message (Optionnel)</label>
                   <textarea
                     rows={4}
-                    placeholder="Tell us about your enquiry..."
+                    placeholder="Parlez-nous de votre demande..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     disabled={loading}
@@ -173,7 +173,7 @@ export function ContactForm() {
                     <Loader2 size={16} className="animate-spin" />
                   ) : (
                     <>
-                      <span>Send Enquiry</span>
+                      <span>Envoyer la Demande</span>
                       <Send size={12} className="text-black/60 group-hover:translate-x-0.5 transition-transform" />
                     </>
                   )}
