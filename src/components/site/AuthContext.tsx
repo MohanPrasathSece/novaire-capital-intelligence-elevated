@@ -55,7 +55,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (data.sessionToken) {
           localStorage.setItem("lumiere_session", data.sessionToken);
         }
-        setActiveModal(null);
         return { success: true };
       } else {
         return { success: false, error: data.error || "Login failed" };
@@ -86,7 +85,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (data.sessionToken) {
           localStorage.setItem("lumiere_session", data.sessionToken);
         }
-        setActiveModal(null);
         return { success: true };
       } else {
         return { success: false, error: data.error || "Signup failed" };

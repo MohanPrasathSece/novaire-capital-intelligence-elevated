@@ -83,22 +83,37 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       
       if (blobs.length > 0) {
         const fileUrl = blobs[0].url;
-        const fileRes = await fetch(fileUrl);
-        if (fileRes.ok) {
-          const userData = await fileRes.json();
-          const sessionToken = crypto.randomUUID();
+        
+        try {
+          const fileRes = await fetch(fileUrl, {
+            headers: {
+              Authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}`
+            }
+          });
           
-          await put(`sessions/${sessionToken}.json`, JSON.stringify({ email: lowerEmail, createdAt: new Date().toISOString() }), {
-            access: "private",
-            token: process.env.BLOB_READ_WRITE_TOKEN,
-            addRandomSuffix: false
-          });
+          if (fileRes.ok) {
+            const userData = await fileRes.json();
+            const sessionToken = crypto.randomUUID();
+            
+            await put(`sessions/${sessionToken}.json`, JSON.stringify({ email: lowerEmail, createdAt: new Date().toISOString() }), {
+              access: "private",
+              token: process.env.BLOB_READ_WRITE_TOKEN,
+              addRandomSuffix: false
+            });
 
-          return res.status(200).json({
-            success: true,
-            user: userData,
-            sessionToken
-          });
+            return res.status(200).json({
+              success: true,
+              user: userData,
+              sessionToken
+            });
+          } else {
+            const errText = await fileRes.text();
+            console.error("Failed to read private user blob:", fileRes.status, errText);
+            return res.status(500).json({ error: "Failed to read account details from secure storage." });
+          }
+        } catch (fetchErr) {
+          console.error("Fetch error reading blob:", fetchErr);
+          return res.status(500).json({ error: "Server error while retrieving account." });
         }
       }
 

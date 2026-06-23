@@ -43,15 +43,17 @@ export function AuthModals() {
 
     setLoading(true);
     const res = await login(email);
-    setLoading(false);
 
     if (res.success) {
       setSuccess("Logged in successfully!");
+      // Short delay to show success message before navigating
       setTimeout(() => {
         handleClose();
         navigate("/capital");
-      }, 1000);
+        setLoading(false);
+      }, 600);
     } else {
+      setLoading(false);
       setError(res.error || "Login failed. Check your email or sign up.");
     }
   };
@@ -76,15 +78,17 @@ export function AuthModals() {
 
     setLoading(true);
     const res = await signup(name, email, phone);
-    setLoading(false);
 
     if (res.success) {
       setSuccess("Account created successfully!");
+      // Short delay to show success message before navigating
       setTimeout(() => {
         handleClose();
         navigate("/capital");
-      }, 1000);
+        setLoading(false);
+      }, 600);
     } else {
+      setLoading(false);
       setError(res.error || "Signup failed.");
     }
   };
