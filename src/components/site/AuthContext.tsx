@@ -18,18 +18,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Local client-side fallback store in case server/Vercel functions are offline during development
-const getLocalUsers = (): Record<string, User> => {
-  const users = localStorage.getItem("lumiere_registered_users");
-  return users ? JSON.parse(users) : {};
-};
-
-const saveLocalUser = (user: User) => {
-  const users = getLocalUsers();
-  users[user.email.toLowerCase()] = user;
-  localStorage.setItem("lumiere_registered_users", JSON.stringify(users));
-};
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -48,7 +36,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = async (email: string) => {
-    const lowerEmail = email.toLowerCase();
     try {
       const response = await fetch("/api/auth?action=login", {
         method: "POST",
@@ -56,37 +43,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         body: JSON.stringify({ email }),
       });
       
+      const data = await response.json();
+      
       if (!response.ok) {
-        throw new Error("Server returned HTTP error");
+        return { success: false, error: data.error || "Login failed." };
       }
       
-      const data = await response.json();
       if (data.success) {
         setUser(data.user);
         localStorage.setItem("lumiere_user", JSON.stringify(data.user));
+        if (data.sessionToken) {
+          localStorage.setItem("lumiere_session", data.sessionToken);
+        }
         setActiveModal(null);
         return { success: true };
       } else {
         return { success: false, error: data.error || "Login failed" };
       }
     } catch (err) {
-      console.warn("Vite dev proxy or server is offline, falling back to local emulator database lookup.", err);
-      // Client-side fallback check
-      const localUsers = getLocalUsers();
-      if (localUsers[lowerEmail]) {
-        const foundUser = localUsers[lowerEmail];
-        setUser(foundUser);
-        localStorage.setItem("lumiere_user", JSON.stringify(foundUser));
-        setActiveModal(null);
-        return { success: true };
-      }
-      // If the email is not registered in the emulated database, return error!
-      return { success: false, error: "Email not registered. Please sign up first." };
+      console.error("Login error:", err);
+      return { success: false, error: "Failed to connect to the authentication server." };
     }
   };
 
   const signup = async (name: string, email: string, phone: string) => {
-    const newUser: User = { name, email, phone };
     try {
       const response = await fetch("/api/auth?action=signup", {
         method: "POST",
@@ -94,33 +74,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         body: JSON.stringify({ name, email, phone }),
       });
       
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Server returned HTTP error");
+        return { success: false, error: data.error || "Signup failed." };
       }
 
-      const data = await response.json();
       if (data.success) {
         setUser(data.user);
         localStorage.setItem("lumiere_user", JSON.stringify(data.user));
+        if (data.sessionToken) {
+          localStorage.setItem("lumiere_session", data.sessionToken);
+        }
         setActiveModal(null);
         return { success: true };
       } else {
         return { success: false, error: data.error || "Signup failed" };
       }
     } catch (err) {
-      console.warn("Vite dev proxy or server is offline, falling back to local emulator signup.", err);
-      // Client-side fallback saving
-      saveLocalUser(newUser);
-      setUser(newUser);
-      localStorage.setItem("lumiere_user", JSON.stringify(newUser));
-      setActiveModal(null);
-      return { success: true };
+      console.error("Signup error:", err);
+      return { success: false, error: "Failed to connect to the authentication server." };
     }
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem("lumiere_user");
+    localStorage.removeItem("lumiere_session");
   };
 
   return (

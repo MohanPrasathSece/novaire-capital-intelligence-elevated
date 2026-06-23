@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 
 const items = [
-  { q: "Novaire feels like having an institutional desk in my pocket. The signal quality is honestly unfair.", a: "Léa M.", r: "Private Investor · Paris" },
-  { q: "The Academy alone is worth it. I went from curious to confidently allocating in three weeks.", a: "Hugo R.", r: "Founder · Lyon" },
+  { q: "Lumière feels like having an institutional desk in my pocket. The signal quality is honestly unfair.", a: "Léa M.", r: "Private Investor · Paris" },
+  { q: "The Capital Portal alone is worth it. I went from curious to confidently allocating in three weeks.", a: "Hugo R.", r: "Founder · Lyon" },
   { q: "Risk engine caught a position I would have over-sized. Saved me a real drawdown.", a: "Amélie C.", r: "Portfolio Manager · Geneva" },
   { q: "The cleanest, most thoughtful crypto product I have ever used. It just feels expensive.", a: "Karim B.", r: "Quant · London" },
 ];

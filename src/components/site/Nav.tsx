@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
-const links = ["Technology", "AI Bot", "Academy", "Security", "FAQ", "Contact"];
+const links = ["Technology", "AI Bot", "Capital", "Security", "FAQ", "Contact"];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,26 +40,41 @@ export function Nav() {
         </Link>
 
         <ul className="hidden lg:flex items-center gap-1 text-[15px] text-white/70">
-          {links.map((l) => (
-            <li key={l}>
-              <a
-                href={l === "Academy" && user ? "/academy" : `/#${l.toLowerCase().replace(/\s+/g, "-")}`}
-                className="relative inline-block rounded-full px-3.5 py-1.5 transition-colors hover:text-white"
-              >
-                {l}
-              </a>
-            </li>
-          ))}
+          {links.map((l) => {
+            const isCapital = l === "Capital";
+            if (isCapital && !user) {
+              return (
+                <li key={l}>
+                  <button
+                    onClick={() => setActiveModal("login")}
+                    className="relative inline-block rounded-full px-3.5 py-1.5 transition-colors hover:text-white cursor-pointer bg-transparent border-none font-sans text-[15px]"
+                  >
+                    {l}
+                  </button>
+                </li>
+              );
+            }
+            return (
+              <li key={l}>
+                <Link
+                  to={isCapital ? "/capital" : `/#${l.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="relative inline-block rounded-full px-3.5 py-1.5 transition-colors hover:text-white"
+                >
+                  {l}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-2">
           {user ? (
             <>
               <Link
-                to="/academy"
+                to="/capital"
                 className="group relative inline-flex items-center gap-2 rounded-full bg-white text-black px-4 py-2 text-[15px] font-medium transition-all hover:shadow-[var(--shadow-glow)]"
               >
-                Academy Portal
+                Capital Portal
                 <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
               </Link>
               <button

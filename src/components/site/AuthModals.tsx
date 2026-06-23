@@ -49,7 +49,7 @@ export function AuthModals() {
       setSuccess("Logged in successfully!");
       setTimeout(() => {
         handleClose();
-        navigate("/academy");
+        navigate("/capital");
       }, 1000);
     } else {
       setError(res.error || "Login failed. Check your email or sign up.");
@@ -82,7 +82,7 @@ export function AuthModals() {
       setSuccess("Account created successfully!");
       setTimeout(() => {
         handleClose();
-        navigate("/academy");
+        navigate("/capital");
       }, 1000);
     } else {
       setError(res.error || "Signup failed.");

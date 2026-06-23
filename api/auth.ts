@@ -1,11 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { put, list } from "@vercel/blob";
-
-// Keep a local in-memory database of users for local development or fallback
-const localUsers = new Map<string, { name: string; email: string; phone: string }>();
-
-const CRM_TOKEN = process.env.CRM_TOKEN || "AFF_1_92cbc1bc76284e19b711bab22587d75f";
-const CRM_ENDPOINT = process.env.CRM_ENDPOINT || "https://inwo.crmcore.me/api/lead_management/api/affiliates";
+import crypto from "crypto";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS Headers
@@ -31,66 +26,40 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(400).json({ error: "Name, email, and phone number are required." });
       }
 
-      // 1. Submit the data to the CRM
-      const nameParts = name.trim().split(/\s+/);
-      const firstName = nameParts[0];
-      const lastName = nameParts.slice(1).join(" ");
-
-      const crmPayload = {
-        country_name: "cy",
-        description: "Lumière Chain User Signup",
-        phone: phone,
-        email: email,
-        first_name: firstName,
-        last_name: lastName || "",
-        custom_fields: {
-          Source_ID: "Website",
-          Outline_Your_Case: "Lumière Chain Platform Signup"
-        }
-      };
-
-      try {
-        const crmResponse = await fetch(CRM_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${CRM_TOKEN}`
-          },
-          body: JSON.stringify(crmPayload)
-        });
-
-        if (!crmResponse.ok) {
-          const errText = await crmResponse.text();
-          console.error("CRM Submission error details:", errText);
-        }
-      } catch (crmErr) {
-        console.error("Failed to connect to CRM:", crmErr);
-        // Requirement: "After CRM submission, continue with the signup flow" and "Handle API failures gracefully"
+      if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        return res.status(500).json({ error: "Server configuration error: Blob token is missing." });
       }
 
-      // 2. Authenticate users using Blob/Vercel Authentication only.
-      // Save user to Vercel Blob
-      let savedToBlob = false;
-      if (process.env.BLOB_READ_WRITE_TOKEN) {
-        try {
-          const userJson = JSON.stringify({ name, email, phone });
-          await put(`users/${email.toLowerCase()}.json`, userJson, {
-            access: "public",
-            addRandomSuffix: false
-          });
-          savedToBlob = true;
-        } catch (blobErr) {
-          console.error("Vercel Blob storage failed, using memory fallback:", blobErr);
-        }
+      const lowerEmail = email.toLowerCase();
+      
+      // Check if user exists
+      const { blobs } = await list({
+        prefix: `users/${lowerEmail}.json`,
+        token: process.env.BLOB_READ_WRITE_TOKEN
+      });
+      
+      if (blobs.length > 0) {
+        return res.status(400).json({ error: "Account already exists!" });
       }
 
-      if (!savedToBlob) {
-        localUsers.set(email.toLowerCase(), { name, email, phone });
-      }
+      const userJson = JSON.stringify({ name, email: lowerEmail, phone });
+      await put(`users/${lowerEmail}.json`, userJson, {
+        access: "private",
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+        addRandomSuffix: false
+      });
+
+      const sessionToken = crypto.randomUUID();
+      await put(`sessions/${sessionToken}.json`, JSON.stringify({ email: lowerEmail, createdAt: new Date().toISOString() }), {
+        access: "private",
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+        addRandomSuffix: false
+      });
 
       return res.status(200).json({
         success: true,
-        user: { name, email, phone }
+        user: { name, email: lowerEmail, phone },
+        sessionToken
       });
 
     } else if (action === "login") {
@@ -101,45 +70,39 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
 
       const lowerEmail = email.toLowerCase();
-      let userFound = false;
-      let userData = null;
 
-      // Check Vercel Blob
-      if (process.env.BLOB_READ_WRITE_TOKEN) {
-        try {
-          // List blobs matching the email prefix to verify if the file exists
-          const { blobs } = await list({
-            prefix: `users/${lowerEmail}.json`
-          });
+      if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        return res.status(500).json({ error: "Server configuration error: Blob token is missing." });
+      }
+
+      // List blobs matching the email prefix to verify if the file exists
+      const { blobs } = await list({
+        prefix: `users/${lowerEmail}.json`,
+        token: process.env.BLOB_READ_WRITE_TOKEN
+      });
+      
+      if (blobs.length > 0) {
+        const fileUrl = blobs[0].url;
+        const fileRes = await fetch(fileUrl);
+        if (fileRes.ok) {
+          const userData = await fileRes.json();
+          const sessionToken = crypto.randomUUID();
           
-          if (blobs.length > 0) {
-            const fileUrl = blobs[0].url;
-            const fileRes = await fetch(fileUrl);
-            if (fileRes.ok) {
-              userData = await fileRes.json();
-              userFound = true;
-            }
-          }
-        } catch (blobErr) {
-          console.error("Vercel Blob read failed, checking memory fallback:", blobErr);
+          await put(`sessions/${sessionToken}.json`, JSON.stringify({ email: lowerEmail, createdAt: new Date().toISOString() }), {
+            access: "private",
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+            addRandomSuffix: false
+          });
+
+          return res.status(200).json({
+            success: true,
+            user: userData,
+            sessionToken
+          });
         }
       }
 
-      // Check memory fallback
-      if (!userFound && localUsers.has(lowerEmail)) {
-        userData = localUsers.get(lowerEmail);
-        userFound = true;
-      }
-
-      if (!userFound) {
-        return res.status(404).json({ error: "Email not registered. Please sign up first." });
-      }
-
-      // Login must NEVER send data to the CRM.
-      return res.status(200).json({
-        success: true,
-        user: userData
-      });
+      return res.status(404).json({ error: "Email not registered. Please sign up first." });
 
     } else {
       return res.status(400).json({ error: "Invalid action." });

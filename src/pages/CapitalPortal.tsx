@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../components/site/AuthContext";
+import { Nav } from "../components/site/Nav";
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
 
 // Mock market graph data
@@ -31,7 +32,7 @@ const graphData = [
   { name: "Sun", price: 67200 },
 ];
 
-export function AcademyPortal() {
+export function CapitalPortal() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -185,32 +186,10 @@ export function AcademyPortal() {
         ₮
       </motion.div>
 
-      {/* Navigation Header */}
-      <header className="relative z-10 flex items-center justify-between px-6 py-5 border-b border-white/5 bg-[#0a0908]/80 backdrop-blur-md">
-        <Link to="/" className="group flex items-center gap-2.5">
-          <div className="relative h-8 w-8 rounded-lg bg-[var(--gold)] shadow-[var(--shadow-glow)] flex items-center justify-center text-[10px] font-bold text-[#040404]">
-            L
-          </div>
-          <span className="font-display text-sm font-semibold tracking-[0.2em] text-white/90">
-            LUMIÈRE CHAIN
-          </span>
-        </Link>
-        <div className="flex items-center gap-4">
-          <div className="hidden sm:block text-right">
-            <div className="text-xs text-white/40">Logged in as</div>
-            <div className="text-sm font-medium text-white/90">{user.name}</div>
-          </div>
-          <button
-            onClick={logout}
-            className="glass rounded-full px-4 py-1.5 text-xs font-medium text-white hover:bg-white/5 cursor-pointer transition-colors"
-          >
-            Log Out
-          </button>
-        </div>
-      </header>
+      <Nav />
 
       {/* Main Educational Experience */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6 mt-12">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 mt-32">
         {/* Title / Description */}
         <div className="max-w-3xl mb-12">
           <motion.div
@@ -228,7 +207,7 @@ export function AcademyPortal() {
             transition={{ duration: 0.8 }}
             className="font-display text-4xl md:text-6xl tracking-tight font-medium"
           >
-            Lumière Academy
+            Lumière Capital
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -236,7 +215,7 @@ export function AcademyPortal() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mt-4 text-white/50 text-sm md:text-base leading-relaxed"
           >
-            Explore our curated institutional-grade education program. Dive deep into market mechanics, blockchain concepts, advanced trading strategies, and proprietary AI signals.
+            Explore our curated institutional-grade digital asset platform. Dive deep into market mechanics, blockchain concepts, advanced trading strategies, and proprietary AI signals.
           </motion.p>
         </div>
 
@@ -258,7 +237,7 @@ export function AcademyPortal() {
 
             {/* Address Bar */}
             <div className="flex-1 max-w-lg mx-auto bg-[#0a0908] border border-white/5 rounded-lg py-1 px-4 text-center text-xs text-white/30 truncate select-none">
-              https://lumierechain.academy/learn/{activeTab}
+              https://lumierechain.com/capital/{activeTab}
             </div>
           </div>
 
@@ -266,7 +245,7 @@ export function AcademyPortal() {
           <div className="flex flex-col lg:flex-row min-h-[600px]">
             {/* Sidebar list */}
             <div className="w-full lg:w-72 bg-[#0c0b0a] border-r border-b lg:border-b-0 border-white/5 p-4 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible gap-2 lg:gap-1 lg:space-y-1 shrink-0 scrollbar-none">
-              <div className="text-[11px] uppercase tracking-wider text-white/30 font-medium px-3 mb-3 hidden lg:block">Courses</div>
+              <div className="text-[11px] uppercase tracking-wider text-white/30 font-medium px-3 mb-3 hidden lg:block">Sections</div>
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isSelected = activeTab === tab.id;
@@ -438,7 +417,7 @@ export function AcademyPortal() {
                     <div className="space-y-6">
                       <h2 className="font-display text-3xl font-medium">Artificial Intelligence & Market Analysis</h2>
                       <p className="text-white/60 leading-relaxed text-sm">
-                        Novaire employs custom AI models to scan global sentiment, order book flows, on-chain transactions, and macroeconomic signals. Our neural models highlight divergence signals and momentum shifts.
+                        Lumière Chain employs custom AI models to scan global sentiment, order book flows, on-chain transactions, and macroeconomic signals. Our neural models highlight divergence signals and momentum shifts.
                       </p>
                       <div className="glass p-5 rounded-xl border border-white/5 space-y-4">
                         <div className="flex items-center justify-between border-b border-white/5 pb-2">
@@ -493,7 +472,7 @@ export function AcademyPortal() {
                       <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/10 text-amber-400 text-xs flex gap-3">
                         <AlertTriangle className="shrink-0" size={18} />
                         <div>
-                          <strong>Key Risk Tip:</strong> Never risk more than 1% to 2% of your total trading equity on a single setup, regardless of signal confidence.
+                          <strong>Key Risk Tip:</strong> Never risk more than 1% to 2% of your total trading equity on a single setup, regardless of signal conviction.
                         </div>
                       </div>
                     </div>
@@ -506,7 +485,7 @@ export function AcademyPortal() {
                         Market cycles generally transition between four major phases: Accumulation, Markup (Bull Market), Distribution, and Markdown (Bear Market). Recognizing which phase the broader market occupies defines correct strategy deployment.
                       </p>
                       <p className="text-white/50 text-xs">
-                        By integrating AI analysis with trend indicators, Novaire assists in mapping macroeconomic cycle tops and bottoms.
+                        By integrating AI analysis with trend indicators, Lumière Chain assists in mapping macroeconomic cycle tops and bottoms.
                       </p>
                     </div>
                   )}

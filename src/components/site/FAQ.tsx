@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 
 const faqs = [
-  { q: "What is Novaire Capital?", a: "Novaire Capital is a French AI-driven crypto intelligence platform that combines proprietary machine-learning models, market analytics and a complete academy in one experience." },
+  { q: "What is Lumière Capital?", a: "Lumière Capital is a French AI-driven crypto intelligence platform that combines proprietary machine-learning models, market analytics and a complete capital portal in one experience." },
   { q: "Who is the platform for?", a: "From first-time investors looking to learn responsibly to active traders and portfolio managers who want institutional-grade analytics with consumer-grade clarity." },
   { q: "How does the AI engine work?", a: "We fuse news, on-chain flows, market microstructure and macro context through ensembles of specialized models. Outputs are explainable, ranked by confidence and calibrated to your mandate." },
   { q: "Is my capital secure?", a: "Yes. Cold storage, HSM-managed keys, audited contracts, 2FA / passkeys and qualifying custodial insurance protect your assets at every layer." },
-  { q: "Is Novaire available in my country?", a: "Novaire is available in 170+ countries, with French- and English-language support and region-specific compliance." },
+  { q: "Is Lumière available in my country?", a: "Lumière is available in 170+ countries, with French- and English-language support and region-specific compliance." },
 ];
 
 export function FAQ() {

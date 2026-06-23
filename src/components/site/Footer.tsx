@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const cols = [
   { t: "Company", l: ["About", "Careers", "Press", "Contact"] },
   { t: "Products", l: ["AI Engine", "Markets", "Signals", "Portfolio"] },
-  { t: "Academy", l: ["Lessons", "Glossary", "Research", "Videos"] },
+  { t: "Capital", l: ["Lessons", "Glossary", "Research", "Videos"] },
   { t: "Security", l: ["Overview", "Audits", "Compliance", "Insurance"] },
   { t: "Legal", l: ["Terms", "Privacy", "Risk", "Cookies"] },
 ];
@@ -65,7 +65,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-white/40">
-          <div>© {new Date().getFullYear()} Novaire Capital · Paris, France</div>
+          <div>© {new Date().getFullYear()} Lumière Capital · Paris, France</div>
           <div className="flex items-center gap-5">
             <a href="#" className="hover:text-white">Twitter</a>
             <a href="#" className="hover:text-white">LinkedIn</a>

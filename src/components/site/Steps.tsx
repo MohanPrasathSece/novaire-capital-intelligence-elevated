@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const steps = [
   { n: "01", t: "Create Account", d: "Onboard in under two minutes with bank-grade KYC." },
-  { n: "02", t: "Learn Crypto", d: "Walk through the Academy at your own pace, French or English." },
+  { n: "02", t: "Learn Crypto", d: "Walk through the Capital Portal at your own pace, French or English." },
   { n: "03", t: "Activate AI", d: "Calibrate the engine to your goals, capital and risk band." },
   { n: "04", t: "Practice", d: "Test strategies in our simulator before deploying real capital." },
   { n: "05", t: "Trade Responsibly", d: "Run live with guardrails, alerts and continuous review." },

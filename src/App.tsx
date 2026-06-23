@@ -6,7 +6,7 @@ import { Toaster } from "sonner";
 
 // Import Pages
 import { LandingPage } from "./pages/LandingPage";
-import { AcademyPortal } from "./pages/AcademyPortal";
+import { CapitalPortal } from "./pages/CapitalPortal";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import { TermsConditions } from "./pages/TermsConditions";
 
@@ -28,7 +28,7 @@ export function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/academy" element={<AcademyPortal />} />
+          <Route path="/capital" element={<CapitalPortal />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsConditions />} />
           <Route path="*" element={<LandingPage />} />

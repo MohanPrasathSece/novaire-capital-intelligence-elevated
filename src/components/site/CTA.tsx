@@ -8,15 +8,15 @@ export function CTA() {
 
   const handleCreateAccount = () => {
     if (user) {
-      navigate("/academy");
+      navigate("/capital");
     } else {
       setActiveModal("signup");
     }
   };
 
-  const handleExploreAcademy = () => {
+  const handleExploreCapital = () => {
     if (user) {
-      navigate("/academy");
+      navigate("/capital");
     } else {
       setActiveModal("login");
     }
@@ -47,13 +47,13 @@ export function CTA() {
                   onClick={handleCreateAccount}
                   className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-shadow hover:shadow-[var(--shadow-glow)] cursor-pointer"
                 >
-                  {user ? "Go to Academy" : "Create Account"}
+                  {user ? "Go to Capital" : "Create Account"}
                 </button>
                 <button
-                  onClick={handleExploreAcademy}
+                  onClick={handleExploreCapital}
                   className="glass rounded-full px-6 py-3 text-sm font-medium text-white hover:bg-white/5 cursor-pointer"
                 >
-                  Explore Academy
+                  Explore Capital
                 </button>
               </div>
             </div>
