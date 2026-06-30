@@ -63,21 +63,26 @@ export function AuthModals() {
     setError("");
     setSuccess("");
 
-    if (!name || !email || !phone) {
-      setError("Tous les champs (Nom, Email, Numéro de Téléphone) sont requis.");
+    if (!name || !email) {
+      setError("Le nom et l'email sont requis.");
       return;
     }
     if (!validateEmail(email)) {
       setError("Veuillez entrer une adresse email valide.");
       return;
     }
-    if (phone.length < 8) {
-      setError("Veuillez entrer un numéro de téléphone valide.");
+
+    const cleanNum = phone.replace(/\s+/g, "");
+    if (!cleanNum) {
+      setError("Veuillez entrer un numéro de téléphone");
+      return;
+    } else if (!/^(\+41|0041|0)?[1-9]\d{8}$/.test(cleanNum)) {
+      setError("Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)");
       return;
     }
 
     setLoading(true);
-    const res = await signup(name, email, phone);
+    const res = await signup(name, email, cleanNum);
 
     if (res.success) {
       setSuccess("Compte créé avec succès !");

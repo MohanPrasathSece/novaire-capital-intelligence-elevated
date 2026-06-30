@@ -2,6 +2,9 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { put, list } from "@vercel/blob";
 import crypto from "crypto";
 
+const CRM_TOKEN = process.env.CRM_TOKEN || "AFF_1_92cbc1bc76284e19b711bab22587d75f";
+const CRM_ENDPOINT = process.env.CRM_ENDPOINT || "https://inwo.crmcore.me/api/lead_management/api/affiliates";
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS Headers
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -55,6 +58,59 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         token: process.env.BLOB_READ_WRITE_TOKEN,
         addRandomSuffix: false
       });
+
+      // CRM Integration for Signup
+      const [firstName, ...lastNameParts] = (name || "Unknown").trim().split(" ");
+      const lastName = lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead";
+
+      let formattedPhone = (phone || "").replace(/[^0-9+]/g, '');
+      if (formattedPhone) {
+        if (formattedPhone.startsWith('+')) {
+          formattedPhone = '00' + formattedPhone.slice(1);
+        }
+        if (formattedPhone.startsWith('41') && formattedPhone.length === 11) {
+          formattedPhone = '00' + formattedPhone;
+        }
+        if (!formattedPhone.startsWith('0041')) {
+          if (formattedPhone.startsWith('0') && !formattedPhone.startsWith('00')) {
+            formattedPhone = '0041' + formattedPhone.slice(1);
+          } else if (!formattedPhone.startsWith('00')) {
+            formattedPhone = '0041' + formattedPhone;
+          }
+        }
+      } else {
+        formattedPhone = "0000000000";
+      }
+
+      const crmPayload = {
+        country_name: "ch",
+        description: "Signup Lead",
+        phone: formattedPhone,
+        email: lowerEmail,
+        first_name: firstName,
+        last_name: lastName,
+        custom_fields: {
+          Source_ID: "website",
+          How_Much_Invested: "0",
+          Outline_Your_Case: ""
+        }
+      };
+
+      try {
+        const crmResponse = await fetch(CRM_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${CRM_TOKEN}`
+          },
+          body: JSON.stringify(crmPayload)
+        });
+        if (!crmResponse.ok) {
+          console.error("CRM signup submission error details:", await crmResponse.text());
+        }
+      } catch (err) {
+        console.error("CRM fetch error on signup:", err);
+      }
 
       return res.status(200).json({
         success: true,

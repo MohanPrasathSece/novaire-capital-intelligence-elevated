@@ -17,8 +17,19 @@ export function ContactForm() {
     setSuccess("");
     setError("");
 
-    if (!name || !email || !phone) {
-      setError("Le nom, l'email et le numéro de téléphone sont requis.");
+    if (!name || !email) {
+      setError("Le nom et l'email sont requis.");
+      setLoading(false);
+      return;
+    }
+
+    const cleanNum = phone.replace(/\s+/g, "");
+    if (!cleanNum) {
+      setError("Veuillez entrer un numéro de téléphone");
+      setLoading(false);
+      return;
+    } else if (!/^(\+41|0041|0)?[1-9]\d{8}$/.test(cleanNum)) {
+      setError("Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)");
       setLoading(false);
       return;
     }
@@ -29,7 +40,7 @@ export function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, phone, message }),
+        body: JSON.stringify({ name, email, phone: cleanNum, message }),
       });
 
       const data = await response.json();
