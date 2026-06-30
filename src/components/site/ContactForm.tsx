@@ -8,6 +8,7 @@ export function ContactForm() {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
