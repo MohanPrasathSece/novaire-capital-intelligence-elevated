@@ -12,11 +12,21 @@ import { TermsConditions } from "./pages/TermsConditions";
 
 // ScrollToTop component that forces scroll to top of window on route changes
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   
   useEffect(() => {
+    if (hash) {
+      // Need a small timeout to ensure the element is in the DOM when navigating from another page
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      return;
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 }

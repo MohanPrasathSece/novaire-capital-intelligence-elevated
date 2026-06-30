@@ -3,7 +3,14 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
-const links = ["Technologie", "Bot IA", "Capital", "Sécurité", "FAQ", "Contact"];
+const links = [
+  { label: "Technologie", href: "/#technology" },
+  { label: "Bot IA", href: "/#ai-bot" },
+  { label: "Capital", href: "/capital" },
+  { label: "Sécurité", href: "/#security" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" }
+];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,27 +47,27 @@ export function Nav() {
         </Link>
 
         <ul className="hidden lg:flex items-center gap-1 text-[15px] text-white/70">
-          {links.map((l) => {
-            const isCapital = l === "Capital";
+          {links.map((link) => {
+            const isCapital = link.label === "Capital";
             if (isCapital && !user) {
               return (
-                <li key={l}>
+                <li key={link.label}>
                   <button
                     onClick={() => setActiveModal("login")}
                     className="relative inline-block rounded-full px-3.5 py-1.5 transition-colors hover:text-white cursor-pointer bg-transparent border-none font-sans text-[15px]"
                   >
-                    {l}
+                    {link.label}
                   </button>
                 </li>
               );
             }
             return (
-              <li key={l}>
+              <li key={link.label}>
                 <Link
-                  to={isCapital ? "/capital" : `/#${l.toLowerCase().replace(/\s+/g, "-")}`}
+                  to={link.href}
                   className="relative inline-block rounded-full px-3.5 py-1.5 transition-colors hover:text-white"
                 >
-                  {l}
+                  {link.label}
                 </Link>
               </li>
             );
