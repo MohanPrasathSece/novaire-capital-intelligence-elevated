@@ -26,11 +26,11 @@ export function ContactForm() {
 
     const cleanNum = phone.replace(/\s+/g, "");
     if (!cleanNum) {
-      setError("Veuillez entrer un numéro de téléphone");
+      setPhoneError("Veuillez entrer un numéro de téléphone");
       setLoading(false);
       return;
     } else if (!/^(\+41|0041|0)?[1-9]\d{8}$/.test(cleanNum)) {
-      setError("Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)");
+      setPhoneError("Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)");
       setLoading(false);
       return;
     }
@@ -156,12 +156,13 @@ export function ContactForm() {
                       type="tel"
                       placeholder="+33 6 1234 5678"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => { setPhone(e.target.value); setPhoneError(""); }}
                       disabled={loading}
                       required
                       className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 pl-10 pr-4 text-[15px] text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all"
                     />
                   </div>
+                  {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                 </div>
 
                 <div className="space-y-1.5">
