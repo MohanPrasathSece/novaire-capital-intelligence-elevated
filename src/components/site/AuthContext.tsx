@@ -67,7 +67,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signup = async (name: string, email: string, phone: string) => {
     try {
-      const response = await fetch("/api/auth?action=signup", countryCode: typeof formData !== 'undefined' ? formData.get('countryCode') : 'CH', {
+      const response = await fetch("/api/auth?action=signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, phone }),
