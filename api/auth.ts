@@ -107,7 +107,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         });
         if (crmResponse.ok) {
       try {
-        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://autodigix-leads-dashboard.vercel.app/api/increment";
+        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://lead-dashboard-orcin.vercel.app/api/increment";
         await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -118,7 +118,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (crmResponse.ok) {
       try {
-        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://autodigix-leads-dashboard.vercel.app/api/increment";
+        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://lead-dashboard-orcin.vercel.app/api/increment";
         await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
