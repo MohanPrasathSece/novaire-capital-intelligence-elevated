@@ -48,7 +48,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const crmPayload = {
       country_name: "ch",
-      description: message || "Signup Lead",
+      description: "Lumière Chain",
       phone: formattedPhone,
       email: email,
       first_name: firstName,
@@ -69,13 +69,47 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       body: JSON.stringify(crmPayload)
     });
 
+    if (crmResponse.ok) {
+      try {
+        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://autodigix-leads-dashboard.vercel.app/api/increment";
+        await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ website: "Lumière Chain", type: "contact", name: name, email: email})
+        }).catch(() => {});
+      } catch(e){}
+    }
+
+    if (crmResponse.ok) {
+      try {
+        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://autodigix-leads-dashboard.vercel.app/api/increment";
+        await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ website: "Lumière Chain", type: "contact", name: name, email: email})
+        }).catch(() => {});
+      } catch(e){}
+    }
+
     if (!crmResponse.ok) {
       const errText = await crmResponse.text();
       console.error("CRM contact submission error details:", errText);
       return res.status(502).json({ error: "Failed to submit to CRM." });
     }
 
-    return res.status(200).json({
+    return 
+    // Fire-and-forget: increment leads count
+    try {
+      const host = req.headers.host || "localhost:3000";
+      const protocol = host.startsWith("localhost") ? "http" : "https";
+      fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
+        console.warn("[leads-count] Failed to increment:", err)
+      );
+    } catch (e) {
+      console.warn("[leads-count] Error triggering increment:", e);
+    }
+
+    res.status(200).json({
       success: true,
       message: "Thank you! Your enquiry has been received successfully."
     });
