@@ -41,7 +41,7 @@ export function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, phone: cleanNum, message }),
+        body: JSON.stringify({ name, email, phone: cleanNum, countryCode: typeof formData !== 'undefined' ? formData.get('countryCode') : 'CH', message }),
       });
 
       const data = await response.json();

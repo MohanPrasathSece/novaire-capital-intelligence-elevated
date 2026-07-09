@@ -83,7 +83,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
 
       const crmPayload = {
-        country_name: "ch",
+        country_name: countryName,
         description: "Lumière Chain",
         phone: formattedPhone,
         email: lowerEmail,
