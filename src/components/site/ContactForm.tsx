@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Loader2, Mail, Phone, User, Send } from "lucide-react";
+import { PhoneInput } from "../PhoneInput";
 
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("CH");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState("");
@@ -29,10 +31,6 @@ export function ContactForm() {
       setPhoneError("Veuillez entrer un numéro de téléphone");
       setLoading(false);
       return;
-    } else if (!/^(\+41|0041|0)?[1-9]\d{8}$/.test(cleanNum)) {
-      setPhoneError("Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)");
-      setLoading(false);
-      return;
     }
 
     try {
@@ -41,7 +39,7 @@ export function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, phone: cleanNum, message }),
+        body: JSON.stringify({ name, email, phone: cleanNum, countryCode, message }),
       });
 
       const data = await response.json();
@@ -56,6 +54,14 @@ export function ContactForm() {
         setError(data.error || "Échec de l'envoi de la demande. Veuillez réessayer.");
       }
     } catch (err) {
+      const rawMsg = (err?.message || err?.toString() || "");
+      if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
+        toast.error("You have already contacted us pls wait");
+        if (typeof setError === 'function') setError("You have already contacted us pls wait");
+        setLoading(false);
+        return;
+      }
+
       console.warn("CRM connection offline, simulating success locally:", err);
       setSuccess("Merci ! Votre demande a été reçue avec succès.");
       setName("");
@@ -150,18 +156,13 @@ export function ContactForm() {
 
                 <div className="space-y-1.5">
                   <label className="text-[15px] uppercase tracking-wider text-white/50 font-medium">Numéro de Téléphone</label>
-                  <div className="relative">
-                    <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
-                    <input
-                      type="tel"
-                      placeholder="+33 6 1234 5678"
-                      value={phone}
-                      onChange={(e) => { setPhone(e.target.value); setPhoneError(""); }}
-                      disabled={loading}
-                      required
-                      className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 pl-10 pr-4 text-[15px] text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all"
-                    />
-                  </div>
+                  <PhoneInput
+                    phone={phone}
+                    countryCode={countryCode}
+                    onPhoneChange={(val) => { setPhone(val); setPhoneError(""); }}
+                    onCountryChange={setCountryCode}
+                    disabled={loading}
+                  />
                   {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                 </div>
 

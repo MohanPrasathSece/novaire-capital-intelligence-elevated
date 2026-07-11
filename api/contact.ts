@@ -18,7 +18,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { name, email, phone, message, amount } = req.body;
+    const { name, email, phone, countryCode = "CH", message, amount } = req.body;
 
     if (!name || !email || !phone) {
       return res.status(400).json({ error: "Name, email, and phone number are required." });
@@ -27,19 +27,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const [firstName, ...lastNameParts] = (name || "Unknown").trim().split(" ");
     const lastName = lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead";
 
+    const dialCodes: Record<string, string> = {
+      FR: "33", CH: "41", BE: "32", CA: "1", US: "1", 
+      GB: "44", DE: "49", ES: "34", IT: "39", NL: "31", SE: "46", AU: "61"
+    };
+    
+    const countryName = countryCode.toLowerCase();
+    const code = dialCodes[countryCode.toUpperCase()] || "41";
+
     let formattedPhone = (phone || "").replace(/[^0-9+]/g, '');
     if (formattedPhone) {
       if (formattedPhone.startsWith('+')) {
         formattedPhone = '00' + formattedPhone.slice(1);
       }
-      if (formattedPhone.startsWith('41') && formattedPhone.length === 11) {
+      if (formattedPhone.startsWith(code) && !formattedPhone.startsWith('00' + code)) {
         formattedPhone = '00' + formattedPhone;
       }
-      if (!formattedPhone.startsWith('0041')) {
+      if (!formattedPhone.startsWith('00' + code)) {
         if (formattedPhone.startsWith('0') && !formattedPhone.startsWith('00')) {
-          formattedPhone = '0041' + formattedPhone.slice(1);
+          formattedPhone = '00' + code + formattedPhone.slice(1);
         } else if (!formattedPhone.startsWith('00')) {
-          formattedPhone = '0041' + formattedPhone;
+          formattedPhone = '00' + code + formattedPhone;
         }
       }
     } else {
@@ -77,7 +85,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ website: "Lumière Chain", type: "contact", name: name, email: email})
         }).catch(() => {});
-      } catch(e){}
+      } catch(e){
+    const rawMsg = (e.message || e.toString() || "");
+    if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
+      if (typeof res.status === 'function') {
+        return res.status(400).json({ error: "You have already contacted us pls wait" });
+      } else {
+        res.statusCode = 400;
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ error: "You have already contacted us pls wait" }));
+        return;
+      }
+    }
+}
     }
 
     if (crmResponse.ok) {
@@ -88,7 +108,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ website: "Lumière Chain", type: "contact", name: name, email: email})
         }).catch(() => {});
-      } catch(e){}
+      } catch(e){
+    const rawMsg = (e.message || e.toString() || "");
+    if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
+      if (typeof res.status === 'function') {
+        return res.status(400).json({ error: "You have already contacted us pls wait" });
+      } else {
+        res.statusCode = 400;
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ error: "You have already contacted us pls wait" }));
+        return;
+      }
+    }
+}
     }
 
     if (!crmResponse.ok) {
@@ -106,6 +138,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         console.warn("[leads-count] Failed to increment:", err)
       );
     } catch (e) {
+    const rawMsg = (e.message || e.toString() || "");
+    if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
+      if (typeof res.status === 'function') {
+        return res.status(400).json({ error: "You have already contacted us pls wait" });
+      } else {
+        res.statusCode = 400;
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ error: "You have already contacted us pls wait" }));
+        return;
+      }
+    }
+
       console.warn("[leads-count] Error triggering increment:", e);
     }
 
@@ -114,6 +158,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       message: "Thank you! Your enquiry has been received successfully."
     });
   } catch (error: any) {
+    const rawMsg = (error.message || error.toString() || "");
+    if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
+      if (typeof res.status === 'function') {
+        return res.status(400).json({ error: "You have already contacted us pls wait" });
+      } else {
+        res.statusCode = 400;
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ error: "You have already contacted us pls wait" }));
+        return;
+      }
+    }
+
     console.error("Contact server error:", error);
     return res.status(500).json({ error: "An internal server error occurred." });
   }

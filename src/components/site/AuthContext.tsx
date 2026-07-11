@@ -29,6 +29,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         setUser(JSON.parse(storedUser));
       } catch (e) {
+      const rawMsg = (e?.message || e?.toString() || "");
+      if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
+        toast.error("Account already exists");
+        if (typeof setError === 'function') setError("Account already exists");
+        setLoading(false);
+        return;
+      }
+
         localStorage.removeItem("lumiere_user");
       }
     }
@@ -60,6 +68,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return { success: false, error: data.error || "Login failed" };
       }
     } catch (err) {
+      const rawMsg = (err?.message || err?.toString() || "");
+      if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
+        toast.error("Account already exists");
+        if (typeof setError === 'function') setError("Account already exists");
+        setLoading(false);
+        return;
+      }
+
       console.error("Login error:", err);
       return { success: false, error: "Failed to connect to the authentication server." };
     }
@@ -90,6 +106,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return { success: false, error: data.error || "Signup failed" };
       }
     } catch (err) {
+      const rawMsg = (err?.message || err?.toString() || "");
+      if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
+        toast.error("Account already exists");
+        if (typeof setError === 'function') setError("Account already exists");
+        setLoading(false);
+        return;
+      }
+
       console.error("Signup error:", err);
       return { success: false, error: "Failed to connect to the authentication server." };
     }
