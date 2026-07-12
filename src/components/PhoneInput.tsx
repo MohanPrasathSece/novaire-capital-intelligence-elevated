@@ -12,6 +12,9 @@ interface PhoneInputProps {
 }
 
 export function PhoneInput({ phone, countryCode, onPhoneChange, onCountryChange, disabled }: PhoneInputProps) {
+  const selectedCountry = COUNTRIES.find((c) => c.code === countryCode);
+  const placeholderText = selectedCountry?.placeholder || "123 456 789";
+
   return (
     <div className="flex gap-2 w-full">
       <Select value={countryCode} onValueChange={onCountryChange} disabled={disabled}>
@@ -31,7 +34,7 @@ export function PhoneInput({ phone, countryCode, onPhoneChange, onCountryChange,
         <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
         <input
           type="tel"
-          placeholder="123 456 789"
+          placeholder={placeholderText}
           value={phone}
           onChange={(e) => onPhoneChange(e.target.value)}
           disabled={disabled}

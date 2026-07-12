@@ -121,11 +121,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         
         const lowerResp = typeof crmData === 'object' ? JSON.stringify(crmData).toLowerCase() : String(crmData).toLowerCase();
 
-        if (lowerResp.includes("lead is not valid")) {
-          return res.status(200).json({ success: false, error: "Veuillez utiliser une adresse e-mail correcte." });
-        }
         if (lowerResp.includes("already exist") || lowerResp.includes("contacted")) {
           return res.status(200).json({ success: false, error: "You have already contacted us. Our team will get in touch with you soon." });
+        }
+        if (crmResponse.status === 400 || lowerResp.includes("lead is not valid")) {
+          return res.status(200).json({ success: false, error: "Le serveur est actuellement occupé. Veuillez nous contacter plus tard." });
         }
 
         if (crmResponse.ok) {

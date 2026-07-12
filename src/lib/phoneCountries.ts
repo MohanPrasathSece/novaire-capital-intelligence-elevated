@@ -3,27 +3,28 @@ export interface Country {
   name: string;
   dial: string;
   flag: string;
+  placeholder?: string;
 }
 
 export const COUNTRIES: Country[] = [
-  { code: "FR", name: "France", dial: "+33", flag: "🇫🇷" },
-  { code: "CH", name: "Switzerland", dial: "+41", flag: "🇨🇭" },
-  { code: "BE", name: "Belgium", dial: "+32", flag: "🇧🇪" },
-  { code: "CA", name: "Canada", dial: "+1", flag: "🇨🇦" },
-  { code: "US", name: "United States", dial: "+1", flag: "🇺🇸" },
-  { code: "GB", name: "United Kingdom", dial: "+44", flag: "🇬🇧" },
-  { code: "DE", name: "Germany", dial: "+49", flag: "🇩🇪" },
-  { code: "ES", name: "Spain", dial: "+34", flag: "🇪🇸" },
-  { code: "IT", name: "Italy", dial: "+39", flag: "🇮🇹" },
-  { code: "NL", name: "Netherlands", dial: "+31", flag: "🇳🇱" },
-  { code: "SE", name: "Sweden", dial: "+46", flag: "🇸🇪" },
-  { code: "AU", name: "Australia", dial: "+61", flag: "🇦🇺" },
-  { code: "IN", name: "India", dial: "+91", flag: "🇮🇳" },
-  { code: "AE", name: "United Arab Emirates", dial: "+971", flag: "🇦🇪" },
-  { code: "SG", name: "Singapore", dial: "+65", flag: "🇸🇬" },
-  { code: "ZA", name: "South Africa", dial: "+27", flag: "🇿🇦" },
-  { code: "BR", name: "Brazil", dial: "+55", flag: "🇧🇷" },
-  { code: "MX", name: "Mexico", dial: "+52", flag: "🇲🇽" },
-  { code: "JP", name: "Japan", dial: "+81", flag: "🇯🇵" },
-  { code: "CY", name: "Cyprus", dial: "+357", flag: "🇨🇾" },
+  { code: "FR", name: "France", dial: "+33", flag: "🇫🇷", placeholder: "6 12 34 56 78" },
+  { code: "CH", name: "Switzerland", dial: "+41", flag: "🇨🇭", placeholder: "79 123 45 67" },
+  { code: "BE", name: "Belgium", dial: "+32", flag: "🇧🇪", placeholder: "470 12 34 56" },
+  { code: "CA", name: "Canada", dial: "+1", flag: "🇨🇦", placeholder: "555 123 4567" },
+  { code: "US", name: "United States", dial: "+1", flag: "🇺🇸", placeholder: "555 123 4567" },
+  { code: "GB", name: "United Kingdom", dial: "+44", flag: "🇬🇧", placeholder: "7700 900077" },
+  { code: "DE", name: "Germany", dial: "+49", flag: "🇩🇪", placeholder: "151 23456789" },
+  { code: "ES", name: "Spain", dial: "+34", flag: "🇪🇸", placeholder: "612 345 678" },
+  { code: "IT", name: "Italy", dial: "+39", flag: "🇮🇹", placeholder: "312 345 6789" },
+  { code: "NL", name: "Netherlands", dial: "+31", flag: "🇳🇱", placeholder: "6 12345678" },
+  { code: "SE", name: "Sweden", dial: "+46", flag: "🇸🇪", placeholder: "70 123 45 67" },
+  { code: "AU", name: "Australia", dial: "+61", flag: "🇦🇺", placeholder: "412 345 678" },
+  { code: "IN", name: "India", dial: "+91", flag: "🇮🇳", placeholder: "98765 43210" },
+  { code: "AE", name: "United Arab Emirates", dial: "+971", flag: "🇦🇪", placeholder: "50 123 4567" },
+  { code: "SG", name: "Singapore", dial: "+65", flag: "🇸🇬", placeholder: "8123 4567" },
+  { code: "ZA", name: "South Africa", dial: "+27", flag: "🇿🇦", placeholder: "82 123 4567" },
+  { code: "BR", name: "Brazil", dial: "+55", flag: "🇧🇷", placeholder: "11 91234 5678" },
+  { code: "MX", name: "Mexico", dial: "+52", flag: "🇲🇽", placeholder: "55 1234 5678" },
+  { code: "JP", name: "Japan", dial: "+81", flag: "🇯🇵", placeholder: "90 1234 5678" },
+  { code: "CY", name: "Cyprus", dial: "+357", flag: "🇨🇾", placeholder: "99 123456" },
 ];
