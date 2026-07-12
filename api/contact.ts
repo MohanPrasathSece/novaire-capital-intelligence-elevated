@@ -27,9 +27,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const [firstName, ...lastNameParts] = (name || "Unknown").trim().split(" ");
     const lastName = lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead";
 
-    const dialCodes: Record<string, string> = {
+        const dialCodes: Record<string, string> = {
       FR: "33", CH: "41", BE: "32", CA: "1", US: "1", 
-      GB: "44", DE: "49", ES: "34", IT: "39", NL: "31", SE: "46", AU: "61"
+      GB: "44", DE: "49", ES: "34", IT: "39", NL: "31", SE: "46", AU: "61",
+      IN: "91", AE: "971", SG: "65", ZA: "27", BR: "55", MX: "52", JP: "81", CY: "357"
     };
     
     const countryName = countryCode.toLowerCase();
