@@ -28,14 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (storedUser) {
       try {
         setUser(JSON.parse(storedUser));
-      } catch (e) {
-      const rawMsg = (e?.message || e?.toString() || "");
-      if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
-        toast.error("Account already exists");
-        if (typeof setError === 'function') setError("Account already exists");
-        setLoading(false);
-        return;
-      }
+      } catch {
 
         localStorage.removeItem("lumiere_user");
       }
@@ -67,13 +60,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         return { success: false, error: data.error || "Login failed" };
       }
-    } catch (err) {
+    } catch (err: any) {
       const rawMsg = (err?.message || err?.toString() || "");
       if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
-        toast.error("Account already exists");
-        if (typeof setError === 'function') setError("Account already exists");
-        setLoading(false);
-        return;
+        return { success: false, error: "Account already exists" };
       }
 
       console.error("Login error:", err);
@@ -105,13 +95,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         return { success: false, error: data.error || "Signup failed" };
       }
-    } catch (err) {
+    } catch (err: any) {
       const rawMsg = (err?.message || err?.toString() || "");
       if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists")) {
-        toast.error("Account already exists");
-        if (typeof setError === 'function') setError("Account already exists");
-        setLoading(false);
-        return;
+        return { success: false, error: "Account already exists" };
       }
 
       console.error("Signup error:", err);
