@@ -56,11 +56,11 @@ export function ContactForm() {
     } catch (err: any) {
       const rawMsg = (err?.message || err?.toString() || "");
       if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
-        setError("Vous nous avez déjà contactés. Veuillez patienter.");
+        setSuccess("Vous nous avez déjà contactés. Veuillez patienter.");
+        setError("");
         setLoading(false);
         return;
       }
-
       console.warn("CRM connection offline, simulating success locally:", err);
       setSuccess("Merci ! Votre demande a été reçue avec succès.");
       setName("");
