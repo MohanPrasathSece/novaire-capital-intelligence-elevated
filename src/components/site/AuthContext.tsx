@@ -12,7 +12,7 @@ interface AuthContextType {
   activeModal: "login" | "signup" | null;
   setActiveModal: (modal: "login" | "signup" | null) => void;
   login: (email: string) => Promise<{ success: boolean; error?: string }>;
-  signup: (name: string, email: string, phone: string) => Promise<{ success: boolean; error?: string }>;
+  signup: (name: string, email: string, phone: string, countryCode: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
 }
 
@@ -71,12 +71,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const signup = async (name: string, email: string, phone: string) => {
+  const signup = async (name: string, email: string, phone: string, countryCode: string) => {
     try {
       const response = await fetch("/api/auth?action=signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone }),
+        body: JSON.stringify({ name, email, phone, countryCode }),
       });
       
       const data = await response.json();

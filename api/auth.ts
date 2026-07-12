@@ -23,10 +23,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     if (action === "signup") {
-      const { name, email, phone } = req.body;
+      const { name, email, phone, countryCode = "CH" } = req.body;
 
       if (!name || !email || !phone) {
-        return res.status(400).json({ error: "Name, email, and phone number are required." });
+        return res.status(200).json({ success: false, error: "Name, email, and phone number are required." });
       }
 
       if (!process.env.BLOB_READ_WRITE_TOKEN) {
@@ -42,7 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
       
       if (blobs.length > 0) {
-        return res.status(400).json({ error: "Account already exists!" });
+        return res.status(200).json({ success: false, error: "Account already exists!" });
       }
 
       const userJson = JSON.stringify({ name, email: lowerEmail, phone });
@@ -63,19 +63,28 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const [firstName, ...lastNameParts] = (name || "Unknown").trim().split(" ");
       const lastName = lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead";
 
+      const dialCodes: Record<string, string> = {
+        FR: "33", CH: "41", BE: "32", CA: "1", US: "1", 
+        GB: "44", DE: "49", ES: "34", IT: "39", NL: "31", SE: "46", AU: "61",
+        IN: "91", AE: "971", SG: "65", ZA: "27", BR: "55", MX: "52", JP: "81", CY: "357"
+      };
+      
+      const countryName = countryCode.toLowerCase();
+      const code = dialCodes[countryCode.toUpperCase()] || "41";
+
       let formattedPhone = (phone || "").replace(/[^0-9+]/g, '');
       if (formattedPhone) {
         if (formattedPhone.startsWith('+')) {
           formattedPhone = '00' + formattedPhone.slice(1);
         }
-        if (formattedPhone.startsWith('41') && formattedPhone.length === 11) {
+        if (formattedPhone.startsWith(code) && !formattedPhone.startsWith('00' + code)) {
           formattedPhone = '00' + formattedPhone;
         }
-        if (!formattedPhone.startsWith('0041')) {
+        if (!formattedPhone.startsWith('00' + code)) {
           if (formattedPhone.startsWith('0') && !formattedPhone.startsWith('00')) {
-            formattedPhone = '0041' + formattedPhone.slice(1);
+            formattedPhone = '00' + code + formattedPhone.slice(1);
           } else if (!formattedPhone.startsWith('00')) {
-            formattedPhone = '0041' + formattedPhone;
+            formattedPhone = '00' + code + formattedPhone;
           }
         }
       } else {
@@ -105,46 +114,42 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           },
           body: JSON.stringify(crmPayload)
         });
+
+        const crmText = await crmResponse.text();
+        let crmData = crmText;
+        try { crmData = JSON.parse(crmText); } catch(e) {}
+        
+        const lowerResp = typeof crmData === 'object' ? JSON.stringify(crmData).toLowerCase() : String(crmData).toLowerCase();
+
+        if (lowerResp.includes("lead is not valid")) {
+          return res.status(200).json({ success: false, error: "Veuillez utiliser une adresse e-mail correcte." });
+        }
+        if (lowerResp.includes("already exist") || lowerResp.includes("contacted")) {
+          return res.status(200).json({ success: false, error: "You have already contacted us. Our team will get in touch with you soon." });
+        }
+
         if (crmResponse.ok) {
-      try {
-        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://lead-dashboard-orcin.vercel.app/api/increment";
-        await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ website: "Lumière Chain", type: "signup", name: name, email: email})
-        }).catch(() => {});
-      } catch(e){}
-    }
+          // Increment dashboards only if CRM accepted
+          try {
+            const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://lead-dashboard-orcin.vercel.app/api/increment";
+            await fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ website: "Lumière Chain", type: "signup", name: name, email: email})
+            }).catch(() => {});
+          } catch(e) {}
 
-    if (crmResponse.ok) {
-      try {
-        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://lead-dashboard-orcin.vercel.app/api/increment";
-        await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ website: "Lumière Chain", type: "signup", name: name, email: email})
-        }).catch(() => {});
-      } catch(e){}
-    }
-
-    if (!crmResponse.ok) {
-          console.error("CRM signup submission error details:", await crmResponse.text());
+          try {
+            const host = req.headers.host || "localhost:3000";
+            const protocol = host.startsWith("localhost") ? "http" : "https";
+            fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch(() => {});
+          } catch (e) {}
+        } else {
+          console.error("CRM signup submission error details:", crmText);
         }
       } catch (err) {
         console.error("CRM fetch error on signup:", err);
       }
-
-      return 
-    // Fire-and-forget: increment leads count
-    try {
-      const host = req.headers.host || "localhost:3000";
-      const protocol = host.startsWith("localhost") ? "http" : "https";
-      fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
-        console.warn("[leads-count] Failed to increment:", err)
-      );
-    } catch (e) {
-      console.warn("[leads-count] Error triggering increment:", e);
-    }
 
     res.status(200).json({
         success: true,

@@ -18,4 +18,12 @@ export const COUNTRIES: Country[] = [
   { code: "NL", name: "Netherlands", dial: "+31", flag: "🇳🇱" },
   { code: "SE", name: "Sweden", dial: "+46", flag: "🇸🇪" },
   { code: "AU", name: "Australia", dial: "+61", flag: "🇦🇺" },
+  { code: "IN", name: "India", dial: "+91", flag: "🇮🇳" },
+  { code: "AE", name: "United Arab Emirates", dial: "+971", flag: "🇦🇪" },
+  { code: "SG", name: "Singapore", dial: "+65", flag: "🇸🇬" },
+  { code: "ZA", name: "South Africa", dial: "+27", flag: "🇿🇦" },
+  { code: "BR", name: "Brazil", dial: "+55", flag: "🇧🇷" },
+  { code: "MX", name: "Mexico", dial: "+52", flag: "🇲🇽" },
+  { code: "JP", name: "Japan", dial: "+81", flag: "🇯🇵" },
+  { code: "CY", name: "Cyprus", dial: "+357", flag: "🇨🇾" },
 ];

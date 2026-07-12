@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Loader2, Sparkles, User, Mail, Phone } from "lucide-react";
+import { X, Loader2, Sparkles, User, Mail } from "lucide-react";
+import { PhoneInput } from "../PhoneInput";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +11,7 @@ export function AuthModals() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("CH");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -73,16 +75,23 @@ export function AuthModals() {
     }
 
     const cleanNum = phone.replace(/\s+/g, "");
+    const phoneLengths: Record<string, number> = {
+      FR: 9, CH: 9, BE: 9, CA: 10, US: 10, GB: 10, DE: 10, ES: 9, IT: 10, NL: 9, SE: 9, AU: 9, IN: 10, AE: 9, SG: 8, ZA: 9, BR: 11, MX: 10, JP: 10, CY: 8
+    };
+    const expectedLen = phoneLengths[countryCode] || 9;
+    
+    if (cleanNum && (cleanNum.length < expectedLen - 1 || cleanNum.length > expectedLen + 2)) {
+      setError(`Veuillez entrer un numéro valide pour le pays sélectionné (${expectedLen} chiffres attendus)`);
+      return;
+    }
+
     if (!cleanNum) {
       setError("Veuillez entrer un numéro de téléphone");
-      return;
-    } else if (!/^(\+41|0041|0)?[1-9]\d{8}$/.test(cleanNum)) {
-      setError("Veuillez entrer un numéro suisse valide (ex: 079 123 45 67)");
       return;
     }
 
     setLoading(true);
-    const res = await signup(name, email, cleanNum);
+    const res = await signup(name, email, cleanNum, countryCode);
 
     if (res.success) {
       setSuccess("Compte créé avec succès !");
@@ -252,17 +261,13 @@ export function AuthModals() {
 
                   <div className="space-y-1.5">
                     <label className="text-[11px] uppercase tracking-wider text-white/50 font-medium">Numéro de Téléphone</label>
-                    <div className="relative">
-                      <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
-                      <input
-                        type="tel"
-                        placeholder="+33 6 1234 5678"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        disabled={loading}
-                        className="w-full bg-[#0d0c0b] border border-white/5 focus:border-[var(--gold)]/50 rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-[var(--gold)]/30 transition-all"
-                      />
-                    </div>
+                    <PhoneInput
+                      phone={phone}
+                      countryCode={countryCode}
+                      onPhoneChange={(val) => { setPhone(val); setError(""); }}
+                      onCountryChange={setCountryCode}
+                      disabled={loading}
+                    />
                   </div>
 
                   <button

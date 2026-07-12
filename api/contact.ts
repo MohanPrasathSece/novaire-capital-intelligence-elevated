@@ -21,7 +21,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const { name, email, phone, countryCode = "CH", message, amount } = req.body;
 
     if (!name || !email || !phone) {
-      return res.status(400).json({ error: "Name, email, and phone number are required." });
+      return res.status(200).json({ success: false, error: "Name, email, and phone number are required." });
     }
 
     const [firstName, ...lastNameParts] = (name || "Unknown").trim().split(" ");
@@ -78,7 +78,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       body: JSON.stringify(crmPayload)
     });
 
+    const crmText = await crmResponse.text();
+    let crmData = crmText;
+    try { crmData = JSON.parse(crmText); } catch(e) {}
+    
+    const lowerResp = typeof crmData === 'object' ? JSON.stringify(crmData).toLowerCase() : String(crmData).toLowerCase();
+
+    if (lowerResp.includes("lead is not valid")) {
+      return res.status(200).json({ success: false, error: "Veuillez utiliser une adresse e-mail correcte." });
+    }
+    if (lowerResp.includes("already exist") || lowerResp.includes("contacted")) {
+      return res.status(200).json({ success: false, error: "You have already contacted us. Our team will get in touch with you soon." });
+    }
+
     if (crmResponse.ok) {
+      // Increment dashboards only if CRM accepted
       try {
         const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://lead-dashboard-orcin.vercel.app/api/increment";
         await fetch(url, {
@@ -86,72 +100,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ website: "Lumière Chain", type: "contact", name: name, email: email})
         }).catch(() => {});
-      } catch(e){
-    const rawMsg = (e.message || e.toString() || "");
-    if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
-      if (typeof res.status === 'function') {
-        return res.status(400).json({ error: "You have already contacted us pls wait" });
-      } else {
-        res.statusCode = 400;
-        res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ error: "You have already contacted us pls wait" }));
-        return;
-      }
-    }
-}
-    }
+      } catch(e) {}
 
-    if (crmResponse.ok) {
       try {
-        const url = (typeof process !== 'undefined' && process.env && process.env.VITE_DASHBOARD_URL) || "https://lead-dashboard-orcin.vercel.app/api/increment";
-        await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ website: "Lumière Chain", type: "contact", name: name, email: email})
-        }).catch(() => {});
-      } catch(e){
-    const rawMsg = (e.message || e.toString() || "");
-    if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
-      if (typeof res.status === 'function') {
-        return res.status(400).json({ error: "You have already contacted us pls wait" });
-      } else {
-        res.statusCode = 400;
-        res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ error: "You have already contacted us pls wait" }));
-        return;
-      }
-    }
-}
-    }
-
-    if (!crmResponse.ok) {
-      const errText = await crmResponse.text();
-      console.error("CRM contact submission error details:", errText);
-      return res.status(502).json({ error: "Failed to submit to CRM." });
-    }
-
-    return 
-    // Fire-and-forget: increment leads count
-    try {
-      const host = req.headers.host || "localhost:3000";
-      const protocol = host.startsWith("localhost") ? "http" : "https";
-      fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
-        console.warn("[leads-count] Failed to increment:", err)
-      );
-    } catch (e) {
-    const rawMsg = (e.message || e.toString() || "");
-    if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
-      if (typeof res.status === 'function') {
-        return res.status(400).json({ error: "You have already contacted us pls wait" });
-      } else {
-        res.statusCode = 400;
-        res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ error: "You have already contacted us pls wait" }));
-        return;
-      }
-    }
-
-      console.warn("[leads-count] Error triggering increment:", e);
+        const host = req.headers.host || "localhost:3000";
+        const protocol = host.startsWith("localhost") ? "http" : "https";
+        fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch(() => {});
+      } catch (e) {}
+    } else {
+      console.error("CRM contact submission error details:", crmText);
+      return res.status(200).json({ success: false, error: "Failed to submit to CRM." });
     }
 
     res.status(200).json({
