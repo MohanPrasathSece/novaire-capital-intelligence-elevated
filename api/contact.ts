@@ -25,7 +25,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const [firstName, ...lastNameParts] = (name || "Unknown").trim().split(" ");
-    const lastName = lastNameParts.length > 0 ? lastNameParts.join(" ") : "Lead";
+    const lastName = lastNameParts.length > 0 ? lastNameParts.join(" ") : "";
 
         const dialCodes: Record<string, string> = {
       FR: "33", CH: "41", BE: "32", CA: "1", US: "1", 
