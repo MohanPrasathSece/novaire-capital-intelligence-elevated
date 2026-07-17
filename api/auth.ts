@@ -47,16 +47,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       const userJson = JSON.stringify({ name, email: lowerEmail, phone });
       await put(`users/${lowerEmail}.json`, userJson, {
-        access: "private",
+        access: "public",
         token: process.env.BLOB_READ_WRITE_TOKEN,
-        addRandomSuffix: false
+        addRandomSuffix: false,
+        cacheControl: "no-store, no-cache, must-revalidate, max-age=0"
       });
 
       const sessionToken = crypto.randomUUID();
       await put(`sessions/${sessionToken}.json`, JSON.stringify({ email: lowerEmail, createdAt: new Date().toISOString() }), {
-        access: "private",
+        access: "public",
         token: process.env.BLOB_READ_WRITE_TOKEN,
-        addRandomSuffix: false
+        addRandomSuffix: false,
+        cacheControl: "no-store, no-cache, must-revalidate, max-age=0"
       });
 
       // CRM Integration for Signup
@@ -180,7 +182,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const fileUrl = blobs[0].url;
         
         try {
-          const fileRes = await fetch(fileUrl, {
+          const fileRes = await fetch(`${fileUrl}?t=${Date.now()}`, {
             headers: {
               Authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}`
             }
@@ -191,24 +193,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             const sessionToken = crypto.randomUUID();
             
             await put(`sessions/${sessionToken}.json`, JSON.stringify({ email: lowerEmail, createdAt: new Date().toISOString() }), {
-              access: "private",
+              access: "public",
               token: process.env.BLOB_READ_WRITE_TOKEN,
-              addRandomSuffix: false
+              addRandomSuffix: false,
+              cacheControl: "no-store, no-cache, must-revalidate, max-age=0"
             });
 
-            return 
-    // Fire-and-forget: increment leads count
-    try {
-      const host = req.headers.host || "localhost:3000";
-      const protocol = host.startsWith("localhost") ? "http" : "https";
-      fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
-        console.warn("[leads-count] Failed to increment:", err)
-      );
-    } catch (e) {
-      console.warn("[leads-count] Error triggering increment:", e);
-    }
+            // Fire-and-forget: increment leads count
+            try {
+              const host = req.headers.host || "localhost:3000";
+              const protocol = host.startsWith("localhost") ? "http" : "https";
+              fetch(`${protocol}://${host}/api/leads-count`, { method: "POST" }).catch((err) =>
+                console.warn("[leads-count] Failed to increment:", err)
+              );
+            } catch (e) {
+              console.warn("[leads-count] Error triggering increment:", e);
+            }
 
-    res.status(200).json({
+            return res.status(200).json({
               success: true,
               user: userData,
               sessionToken
