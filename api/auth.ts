@@ -50,7 +50,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         access: "public",
         token: process.env.BLOB_READ_WRITE_TOKEN,
         addRandomSuffix: false,
-        cacheControl: "no-store, no-cache, must-revalidate, max-age=0"
+        cacheControlMaxAge: 0
       });
 
       const sessionToken = crypto.randomUUID();
@@ -58,7 +58,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         access: "public",
         token: process.env.BLOB_READ_WRITE_TOKEN,
         addRandomSuffix: false,
-        cacheControl: "no-store, no-cache, must-revalidate, max-age=0"
+        cacheControlMaxAge: 0
       });
 
       // CRM Integration for Signup
@@ -196,7 +196,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               access: "public",
               token: process.env.BLOB_READ_WRITE_TOKEN,
               addRandomSuffix: false,
-              cacheControl: "no-store, no-cache, must-revalidate, max-age=0"
+              cacheControlMaxAge: 0
             });
 
             // Fire-and-forget: increment leads count
