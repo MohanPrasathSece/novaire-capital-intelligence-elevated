@@ -42,7 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
       
       if (blobs.length > 0) {
-        return res.status(200).json({ success: false, error: "Account already exists!" });
+        return res.status(200).json({ success: false, error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
       }
 
       const userJson = JSON.stringify({ name, email: lowerEmail, phone });
@@ -123,8 +123,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         
         const lowerResp = typeof crmData === 'object' ? JSON.stringify(crmData).toLowerCase() : String(crmData).toLowerCase();
 
-        if (lowerResp.includes("already exist") || lowerResp.includes("contacted")) {
-          return res.status(200).json({ success: false, error: "You have already contacted us. Our team will get in touch with you soon." });
+        if (crmResponse.status === 500 || crmResponse.status === 409 || lowerResp.includes("already") || lowerResp.includes("exist") || lowerResp.includes("contacted") || lowerResp.includes("500") || lowerResp.includes("internal server")) {
+          return res.status(200).json({ success: false, error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
         }
         if (crmResponse.status === 400 || lowerResp.includes("lead is not valid")) {
           return res.status(200).json({ success: false, error: "Le serveur est actuellement occupé. Veuillez nous contacter plus tard." });

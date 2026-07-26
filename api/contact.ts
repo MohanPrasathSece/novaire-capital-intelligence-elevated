@@ -84,8 +84,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     
     const lowerResp = typeof crmData === 'object' ? JSON.stringify(crmData).toLowerCase() : String(crmData).toLowerCase();
 
-    if (lowerResp.includes("already exist") || lowerResp.includes("contacted")) {
-      return res.status(200).json({ success: false, error: "You have already contacted us. Our team will get in touch with you soon." });
+    if (crmResponse.status === 500 || crmResponse.status === 409 || lowerResp.includes("already") || lowerResp.includes("exist") || lowerResp.includes("contacted") || lowerResp.includes("500") || lowerResp.includes("internal server")) {
+      return res.status(200).json({ success: false, error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
     }
 
     if (crmResponse.status === 400 || lowerResp.includes("lead is not valid")) {
@@ -118,14 +118,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       message: "Thank you! Your enquiry has been received successfully."
     });
   } catch (error: any) {
-    const rawMsg = (error.message || error.toString() || "");
-    if (rawMsg.toLowerCase().includes("already exist") || rawMsg.toLowerCase().includes("already exists") || rawMsg.toLowerCase().includes("contacted")) {
+    const rawMsg = (error.message || error.toString() || "").toLowerCase();
+    if (rawMsg.includes("already") || rawMsg.includes("exist") || rawMsg.includes("contacted") || rawMsg.includes("500") || rawMsg.includes("internal server")) {
       if (typeof res.status === 'function') {
-        return res.status(400).json({ error: "You have already contacted us pls wait" });
+        return res.status(200).json({ success: false, error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." });
       } else {
-        res.statusCode = 400;
+        res.statusCode = 200;
         res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ error: "You have already contacted us pls wait" }));
+        res.end(JSON.stringify({ success: false, error: "You have already contacted us. Please wait while our team reviews your request. We'll get back to you soon." }));
         return;
       }
     }
